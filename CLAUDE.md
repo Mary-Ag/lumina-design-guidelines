@@ -55,8 +55,8 @@ Three durations: `--dur-fast` (200ms), `--dur-med` (350ms), `--dur-slow` (500ms)
 ## Components (20 total)
 
 **Aluminum** (interactive controls):
-- **AluminumSlider** — range input with gradient thumb, gold fill, monospace value
-- **AluminumToggle** — switch with gold track (on), void track (off), aluminum thumb
+- **AluminumSlider** — range input with white thumb, gold fill, monospace value. Web uses gradient thumb for visual depth; native uses flat `aluminum.thumb` token (#FFFFFF).
+- **AluminumToggle** — switch with gold track (on), void track (off), white thumb. Same gradient/flat distinction as slider.
 - **SegmentedControl (Manettino)** — segmented control with sliding gold highlight
 - **AluminumButtonBar** — multi-option bar (e.g. fan speed OFF/LOW/MED/HIGH/MAX)
 - **AluminumRadio** — radio group with scale dot animation
