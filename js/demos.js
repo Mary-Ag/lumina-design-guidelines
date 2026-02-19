@@ -244,42 +244,6 @@
     });
   }
 
-  // ─── Theme Toggle ───
-  function initThemeToggle() {
-    var stored = localStorage.getItem('luce-theme');
-    if (stored === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.theme-toggle');
-      if (!btn) return;
-      var html = document.documentElement;
-      var isLight = html.getAttribute('data-theme') === 'light';
-      if (isLight) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('luce-theme', 'dark');
-      } else {
-        html.setAttribute('data-theme', 'light');
-        localStorage.setItem('luce-theme', 'light');
-      }
-      // Update icon
-      updateThemeIcons();
-    });
-  }
-
-  function updateThemeIcons() {
-    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    document.querySelectorAll('.theme-toggle').forEach(function (btn) {
-      var sun = btn.querySelector('.icon-sun');
-      var moon = btn.querySelector('.icon-moon');
-      if (sun) sun.style.display = isLight ? 'none' : 'block';
-      if (moon) moon.style.display = isLight ? 'block' : 'none';
-      var label = btn.querySelector('.theme-label');
-      if (label) label.textContent = isLight ? 'Dark mode' : 'Light mode';
-    });
-  }
-
   // ─── LED Channel Animation ───
   function initLEDChannels() {
     var observer = new IntersectionObserver(function (entries) {
@@ -312,8 +276,6 @@
     initExpandableMetrics();
     initRelayToggles();
     initActivityFilters();
-    initThemeToggle();
     initLEDChannels();
-    updateThemeIcons();
   });
 })();

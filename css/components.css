@@ -68,35 +68,6 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   THEME TOGGLE
-   ═══════════════════════════════════════════════════════ */
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: var(--sp-2) var(--sp-3);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  color: var(--alu-mid);
-  cursor: pointer;
-  font-size: 12px;
-  transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
-  margin-bottom: var(--sp-5);
-}
-
-.theme-toggle:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-}
-
-.theme-toggle svg {
-  width: 16px;
-  height: 16px;
-}
-
-/* ═══════════════════════════════════════════════════════
    1. ALUMINUM SLIDER
    ═══════════════════════════════════════════════════════ */
 
