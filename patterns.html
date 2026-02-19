@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patterns — Luce Design Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/docs.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/patterns.css">
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <nav class="docs-sidebar">
+    <a href="index.html" class="sidebar-brand">Luce</a>
+    <div class="sidebar-tagline">Design Guidelines</div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Patterns</div>
+      <a href="#screen-structure" class="sidebar-sub-link">Screen Structure</a>
+      <a href="#navigation" class="sidebar-sub-link">Navigation</a>
+      <a href="#sticky-elements" class="sidebar-sub-link">Sticky Elements</a>
+      <a href="#glass-nesting" class="sidebar-sub-link">Glass Nesting</a>
+      <a href="#animation" class="sidebar-sub-link">Animation</a>
+      <a href="#data-loading" class="sidebar-sub-link">Data Loading</a>
+      <a href="#forms" class="sidebar-sub-link">Forms</a>
+      <a href="#dos-and-donts" class="sidebar-sub-link">Do's &amp; Don'ts</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Pages</div>
+      <a href="index.html" class="sidebar-link">Home</a>
+      <a href="foundations.html" class="sidebar-link">Foundations</a>
+      <a href="components.html" class="sidebar-link">Components</a>
+      <a href="patterns.html" class="sidebar-link active">Patterns</a>
+      <a href="brand.html" class="sidebar-link">Brand</a>
+    </div>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="docs-main">
+
+    <div class="page-header">
+      <h1>Patterns</h1>
+      <p>Higher-level usage patterns for screen layout, navigation, animation choreography, data loading, and common mistakes to avoid.</p>
+    </div>
+
+    <!-- 1. Screen Structure -->
+    <section id="screen-structure">
+      <h2>Screen Structure</h2>
+      <p>Every Luce screen follows a master-detail layout with consistent padding zones, safe areas, and content max-width. Elevation layers separate content from navigation chrome.</p>
+
+      <div class="demo-panel">
+        <div class="zone-demo" style="max-width:480px;margin:0 auto;background:var(--void)">
+          <span class="zone-label" style="top:4px;left:4px">z-0 Void</span>
+
+          <!-- Status bar zone -->
+          <div class="zone-outline" style="margin:var(--sp-8) var(--sp-4) var(--sp-2);padding:var(--sp-2) var(--sp-3)">
+            <span class="zone-label" style="top:-8px;left:8px">Safe Area Top</span>
+            <div style="height:20px;font-family:var(--font-mono);font-size:10px;color:var(--alu-dark);text-align:center">Status Bar</div>
+          </div>
+
+          <!-- Header -->
+          <div class="zone-outline" style="margin:var(--sp-2) var(--sp-4);padding:var(--sp-3) var(--sp-4);background:var(--glass-bg)">
+            <span class="zone-label" style="top:-8px;left:8px">z-2 Header</span>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:17px;font-weight:600;color:var(--alu-light)">Device Name</span>
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--alu-dark)">14:32</span>
+            </div>
+          </div>
+
+          <!-- Content area -->
+          <div class="zone-outline" style="margin:var(--sp-2) var(--sp-4);padding:var(--sp-4);min-height:120px">
+            <span class="zone-label" style="top:-8px;left:8px">z-1 Content</span>
+            <div style="font-size:12px;color:var(--alu-dark)">
+              Scrollable content area<br>
+              Padding: 16px (--sp-4) horizontal<br>
+              Max-width: 960px on desktop
+            </div>
+          </div>
+
+          <!-- Tab bar -->
+          <div class="zone-outline" style="margin:var(--sp-2) var(--sp-4) var(--sp-4);padding:var(--sp-2) var(--sp-3);background:var(--glass-bg)">
+            <span class="zone-label" style="top:-8px;left:8px">z-2 Tab Bar (72px)</span>
+            <div style="display:flex;justify-content:space-around;padding:var(--sp-2) 0">
+              <span style="font-size:10px;font-weight:600;color:var(--gold)">Dashboard</span>
+              <span style="font-size:10px;font-weight:600;color:var(--alu-dark)">Records</span>
+              <span style="font-size:10px;font-weight:600;color:var(--alu-dark)">Activity</span>
+              <span style="font-size:10px;font-weight:600;color:var(--alu-dark)">Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Layout Rules</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li>Phone: single column, 16px horizontal padding, bottom tab bar</li>
+        <li>Tablet: persistent 260px sidebar, 2-column card grid, master-detail</li>
+        <li>Desktop: persistent sidebar, 3-column cards, max content width 960px</li>
+        <li>All content respects safe area insets (notch, home indicator)</li>
+      </ul>
+    </section>
+
+    <!-- 2. Navigation -->
+    <section id="navigation">
+      <h2>Navigation</h2>
+      <p>Global TabBar with 4 tabs (72px height). Drill-down uses push transitions (30px slide, 500ms spring). Back gesture reverses the slide direction.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:400px">
+          <div class="nav-demo-tabs">
+            <div class="tab-item active" onclick="this.parentNode.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));this.classList.add('active')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span class="tab-label">Dashboard</span>
+            </div>
+            <div class="tab-item" onclick="this.parentNode.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));this.classList.add('active')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span class="tab-label">Records</span>
+            </div>
+            <div class="tab-item" onclick="this.parentNode.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));this.classList.add('active')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span class="tab-label">Activity</span>
+            </div>
+            <div class="tab-item" onclick="this.parentNode.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));this.classList.add('active')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="tab-label">Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Navigation Rules</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Forward push</strong>: new screen slides in from right (30px), old slides left</li>
+        <li><strong>Back</strong>: reverse direction — old slides back from left, current exits right</li>
+        <li><strong>Tab switch</strong>: fade + rise (no horizontal slide) — 200ms fade, 8px translateY</li>
+        <li><strong>Detail tabs</strong> (Manettino): content swaps without screen transition, gold slider animates</li>
+        <li>Tab bar hides on keyboard open and in immersive views</li>
+      </ul>
+    </section>
+
+    <!-- 3. Sticky Elements -->
+    <section id="sticky-elements">
+      <h2>Sticky Elements</h2>
+      <p>Headers and bar gauge rows stick to the top of their scroll container at z-2. A subtle gradient fade masks the content edge beneath.</p>
+
+      <div class="demo-panel">
+        <div class="sticky-demo-container">
+          <div class="sticky-demo-header">
+            Dagze Chamber 1 — Monitor
+          </div>
+          <div class="sticky-demo-content">
+            <div class="sticky-demo-row">Temperature: <span style="font-family:var(--font-mono);color:var(--alu-light)">24.2°C</span></div>
+            <div class="sticky-demo-row">Humidity: <span style="font-family:var(--font-mono);color:var(--alu-light)">68%</span></div>
+            <div class="sticky-demo-row">PPFD: <span style="font-family:var(--font-mono);color:var(--alu-light)">420 µmol</span></div>
+            <div class="sticky-demo-row">VPD: <span style="font-family:var(--font-mono);color:var(--alu-light)">1.12 kPa</span></div>
+            <div class="sticky-demo-row">CO2: <span style="font-family:var(--font-mono);color:var(--alu-light)">820 ppm</span></div>
+            <div class="sticky-demo-row">Supply Air: <span style="font-family:var(--font-mono);color:var(--alu-light)">18.4°C</span></div>
+            <div class="sticky-demo-row">Return Air: <span style="font-family:var(--font-mono);color:var(--alu-light)">24.1°C</span></div>
+            <div class="sticky-demo-row">Compressor: <span style="font-family:var(--font-mono);color:var(--alu-light)">42 rps</span></div>
+            <div class="sticky-demo-row">Fan RPM: <span style="font-family:var(--font-mono);color:var(--alu-light)">1240</span></div>
+            <div class="sticky-demo-row">Coil Temp: <span style="font-family:var(--font-mono);color:var(--alu-light)">6.2°C</span></div>
+            <div class="sticky-demo-row">pH: <span style="font-family:var(--font-mono);color:var(--alu-light)">6.2</span></div>
+            <div class="sticky-demo-row">EC: <span style="font-family:var(--font-mono);color:var(--alu-light)">1.8 mS/cm</span></div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--alu-dark);margin-top:var(--sp-3)">Scroll to see the header stick. Uses <code style="font-size:11px">position: sticky; top: 0; z-index: 10</code></p>
+      </div>
+    </section>
+
+    <!-- 4. Glass Nesting -->
+    <section id="glass-nesting">
+      <h2>Glass Nesting</h2>
+      <p>Each nesting depth adds +2% white opacity to the background. Maximum 3 levels deep — beyond that, visual hierarchy breaks down and blur stacking causes performance issues.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;gap:var(--sp-4);flex-wrap:wrap;align-items:flex-start">
+          <!-- Good: 3 levels -->
+          <div style="flex:1;min-width:200px">
+            <div class="demo-label" style="color:var(--green)">3 Levels (Max)</div>
+            <div class="glass-panel" style="padding:var(--sp-4)">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--alu-dark);margin-bottom:var(--sp-2)">4% — Depth 1</div>
+              <div class="glass-panel depth-2" style="padding:var(--sp-3)">
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--alu-dark);margin-bottom:var(--sp-2)">6% — Depth 2</div>
+                <div class="glass-panel depth-3" style="padding:var(--sp-3)">
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--alu-dark)">8% — Depth 3</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Do
+          </div>
+          <div class="do-panel-content">
+            Use 3 levels maximum. Computed opacity: <code>0.04 + 0.02 × depth</code>. Each level is visually distinct without becoming opaque.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Don't
+          </div>
+          <div class="dont-panel-content">
+            Nest beyond 3 levels. At 10%+ opacity the glass becomes nearly opaque, losing the translucent effect. Also causes blur stacking performance issues.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Animation Choreography -->
+    <section id="animation">
+      <h2>Animation Choreography</h2>
+      <p>Staggered card entrance delays each card by 100ms. Screen slides use 30px offset and 500ms spring. Bar gauge fills stagger at 100ms per bar. All animations use the single spring easing curve.</p>
+
+      <div class="demo-panel">
+        <div class="demo-label">Staggered Card Entrance</div>
+        <div class="stagger-demo" id="stagger-demo">
+          <div class="glass-panel stagger-card" style="padding:var(--sp-4)">
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-light)">24.2°C</div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--alu-dark);margin-top:var(--sp-1)">Temperature</div>
+          </div>
+          <div class="glass-panel stagger-card" style="padding:var(--sp-4)">
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-light)">68%</div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--alu-dark);margin-top:var(--sp-1)">Humidity</div>
+          </div>
+          <div class="glass-panel stagger-card" style="padding:var(--sp-4)">
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-light)">420</div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--alu-dark);margin-top:var(--sp-1)">PPFD</div>
+          </div>
+          <div class="glass-panel stagger-card" style="padding:var(--sp-4)">
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-light)">1.12 kPa</div>
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--alu-dark);margin-top:var(--sp-1)">VPD</div>
+          </div>
+        </div>
+        <button class="demo-replay" id="stagger-replay" style="margin-top:var(--sp-3)">Replay stagger</button>
+      </div>
+
+      <div class="demo-panel">
+        <div class="demo-label">Timing Diagram</div>
+        <div class="timing-diagram">
+          <div class="timing-row">
+            <span class="timing-label">Card 1</span>
+            <div class="timing-bar" style="width:100px;margin-left:0"></div>
+            <span class="timing-offset">0ms</span>
+          </div>
+          <div class="timing-row">
+            <span class="timing-label">Card 2</span>
+            <div class="timing-bar" style="width:100px;margin-left:20px"></div>
+            <span class="timing-offset">100ms</span>
+          </div>
+          <div class="timing-row">
+            <span class="timing-label">Card 3</span>
+            <div class="timing-bar" style="width:100px;margin-left:40px"></div>
+            <span class="timing-offset">200ms</span>
+          </div>
+          <div class="timing-row">
+            <span class="timing-label">Card 4</span>
+            <div class="timing-bar" style="width:100px;margin-left:60px"></div>
+            <span class="timing-offset">300ms</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Motion Rules</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Easing</strong>: Always <code style="font-size:12px">cubic-bezier(0.16, 1, 0.3, 1)</code> — fast launch, gentle settle</li>
+        <li><strong>Fast</strong> (200ms): hover states, color transitions, small movements</li>
+        <li><strong>Medium</strong> (350ms): slider moves, toggle switches, manettino slides</li>
+        <li><strong>Slow</strong> (500ms): screen transitions, card entrances, bar gauge fills</li>
+        <li><strong>Stagger</strong>: 100ms delay between sequential items</li>
+        <li><strong>Reduced motion</strong>: <code style="font-size:12px">prefers-reduced-motion: reduce</code> — disable springs, use instant transitions</li>
+      </ul>
+    </section>
+
+    <!-- 6. Data Loading -->
+    <section id="data-loading">
+      <h2>Data Loading</h2>
+      <p>Show skeleton placeholders while data loads — never blank screens. Skeletons use a shimmer gradient that slides left to right. Transition from skeleton to content uses a 200ms fade.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;gap:var(--sp-6);flex-wrap:wrap">
+          <!-- Skeleton state -->
+          <div style="flex:1;min-width:180px">
+            <div class="demo-label">Loading</div>
+            <div class="skeleton-demo glass-panel" style="padding:var(--sp-4)">
+              <div class="skeleton skeleton-title"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text" style="width:80%"></div>
+              <div style="display:flex;gap:var(--sp-3);margin-top:var(--sp-4)">
+                <div class="skeleton skeleton-bar"></div>
+                <div class="skeleton skeleton-bar"></div>
+                <div class="skeleton skeleton-bar"></div>
+                <div class="skeleton skeleton-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loaded state -->
+          <div style="flex:1;min-width:180px">
+            <div class="demo-label">Loaded</div>
+            <div class="glass-panel" style="padding:var(--sp-4)">
+              <div style="font-size:15px;font-weight:600;color:var(--alu-light);margin-bottom:var(--sp-2)">Dagze Chamber 1</div>
+              <div style="font-size:13px;color:var(--alu-mid);margin-bottom:var(--sp-1)">Lettuce — Butterhead</div>
+              <div style="font-size:12px;color:var(--alu-dark)">Day 14 · Seedling phase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel">
+        <div style="display:flex;gap:var(--sp-4);flex-wrap:wrap">
+          <!-- Empty state -->
+          <div style="flex:1;min-width:200px">
+            <div class="demo-label">Empty State</div>
+            <div class="glass-panel" style="padding:var(--sp-8);text-align:center">
+              <div style="font-size:32px;opacity:0.2;margin-bottom:var(--sp-3)">&#9671;</div>
+              <div style="font-size:14px;color:var(--alu-mid);margin-bottom:var(--sp-1)">No devices found</div>
+              <div style="font-size:12px;color:var(--alu-dark)">Add a device to get started.</div>
+            </div>
+          </div>
+
+          <!-- Error state -->
+          <div style="flex:1;min-width:200px">
+            <div class="demo-label">Error State</div>
+            <div class="glass-panel" style="padding:var(--sp-4);border-left:3px solid var(--red)">
+              <div style="font-size:13px;font-weight:600;color:var(--red);margin-bottom:var(--sp-1)">Connection failed</div>
+              <div style="font-size:12px;color:var(--alu-mid)">Unable to reach looper-dagze-1. Check network connection.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Form Patterns -->
+    <section id="forms">
+      <h2>Form Patterns</h2>
+      <p>Glass-background inputs with gold focus border. Validation states use green (valid) and red (invalid) borders with helper text below. Group related settings in rows with labels.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:360px;display:flex;flex-direction:column;gap:var(--sp-4)">
+          <div>
+            <div class="form-label">Device Name</div>
+            <input class="form-demo-input valid" type="text" value="Dagze Chamber 1">
+            <div class="form-hint valid">Valid device name</div>
+          </div>
+          <div>
+            <div class="form-label">Temperature Setpoint</div>
+            <input class="form-demo-input" type="text" value="24" placeholder="18–30">
+            <div class="form-hint" style="color:var(--alu-dark)">Range: 18°C – 30°C</div>
+          </div>
+          <div>
+            <div class="form-label">API Endpoint</div>
+            <input class="form-demo-input invalid" type="text" value="not-a-url">
+            <div class="form-hint invalid">Invalid URL format</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Input Rules</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li>Background: <code style="font-size:12px">var(--glass-bg)</code> with blur</li>
+        <li>Border: <code style="font-size:12px">var(--glass-border)</code> default, gold on focus</li>
+        <li>Validation: green border + hint (valid), red border + hint (invalid)</li>
+        <li>Placeholder text uses <code style="font-size:12px">var(--alu-dark)</code></li>
+        <li>Labels: 12px uppercase, <code style="font-size:12px">var(--alu-mid)</code></li>
+      </ul>
+    </section>
+
+    <!-- 8. Do's and Don'ts -->
+    <section id="dos-and-donts">
+      <h2>Do's and Don'ts</h2>
+      <p>Common mistakes to avoid when building with Luce.</p>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Color carries meaning
+          </div>
+          <div class="do-panel-content">
+            Green = healthy, orange = warning, red = critical. Every colored pixel communicates system state.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Decorative color
+          </div>
+          <div class="dont-panel-content">
+            Never use color for decoration. No colored backgrounds for visual interest, no rainbow gradients, no color just to "make it pop."
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Use alu-mid for body text
+          </div>
+          <div class="do-panel-content">
+            Body text uses <code>--alu-mid</code> (#A1A1AA, 7.3:1 contrast). Secondary labels use <code>--alu-dark</code> (5.0:1). Both pass WCAG AA.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Use alu-muted for body
+          </div>
+          <div class="dont-panel-content">
+            Never use <code>--alu-muted</code> for body text. At 3.7:1 contrast it fails WCAG AA. Reserved for decorative elements and large icons only.
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            4px grid spacing
+          </div>
+          <div class="do-panel-content">
+            All spacing uses 4px multiples: <code>--sp-1</code> (4px) through <code>--sp-12</code> (48px). Consistent rhythm creates visual harmony.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Arbitrary spacing
+          </div>
+          <div class="dont-panel-content">
+            No <code>margin: 7px</code> or <code>padding: 15px</code>. If a value isn't on the 4px grid, it breaks the rhythm. Use the nearest grid value.
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Focus-visible states
+          </div>
+          <div class="do-panel-content">
+            All interactive elements have <code>:focus-visible</code> with 2px gold outline and 2px offset. Glass panels use box-shadow instead.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Missing focus states
+          </div>
+          <div class="dont-panel-content">
+            Never remove focus outlines without providing an alternative. Keyboard-only users must be able to see what's focused.
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Spring easing
+          </div>
+          <div class="do-panel-content">
+            Use <code>--ease-spring</code> for all animations. The fast-launch, gentle-settle curve gives every interaction a mechanical precision feel.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Linear / ease-in-out
+          </div>
+          <div class="dont-panel-content">
+            Linear easing feels robotic. Ease-in-out feels sluggish on launch. The spring curve is the only approved easing for Luce animations.
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Mono for data values
+          </div>
+          <div class="do-panel-content">
+            All numeric values, device IDs, timestamps, and code use JetBrains Mono. DM Sans for labels and body text.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Sans for data values
+          </div>
+          <div class="dont-panel-content">
+            Proportional fonts make data values hard to scan and align. Never use DM Sans for temperatures, percentages, or IDs.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/nav.js"></script>
+<script>
+// Stagger animation demo
+document.getElementById('stagger-replay').addEventListener('click', function() {
+  var cards = document.querySelectorAll('#stagger-demo .stagger-card');
+  cards.forEach(function(card) { card.classList.remove('animate'); });
+  requestAnimationFrame(function() {
+    cards.forEach(function(card, i) {
+      setTimeout(function() { card.classList.add('animate'); }, i * 100);
+    });
+  });
+});
+// Auto-play on load
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('#stagger-demo .stagger-card');
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      cards.forEach(function(card, i) {
+        setTimeout(function() { card.classList.add('animate'); }, i * 100);
+      });
+      observer.disconnect();
+    }
+  }, { threshold: 0.3 });
+  observer.observe(document.getElementById('stagger-demo'));
+});
+</script>
+</body>
+</html>

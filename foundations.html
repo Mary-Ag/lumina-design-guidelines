@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundations — Luce Design Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/docs.css">
+<style>
+/* ─── Inline component styles for animation demos ─── */
+
+/* Tab Bar */
+.demo-tab-bar {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 8px;
+  background: rgba(12, 14, 18, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.demo-tab-bar .tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 8px 0 12px;
+  color: var(--alu-dark);
+  transition: color var(--dur-fast) ease;
+  user-select: none;
+  position: relative;
+}
+
+.demo-tab-bar .tab-item.active { color: var(--gold); }
+.demo-tab-bar .tab-item:hover:not(.active) { color: var(--alu-mid); }
+
+.demo-tab-bar .tab-item svg { width: 22px; height: 22px; }
+
+.demo-tab-bar .tab-label {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Manettino */
+.alu-manettino {
+  display: flex;
+  background: var(--alu-surface);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.alu-manettino .segment {
+  flex: 1;
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--alu-dark);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: color var(--dur-fast) ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.alu-manettino .segment.active { color: var(--void); }
+.alu-manettino .segment:hover:not(.active) { color: var(--alu-mid); }
+
+.alu-manettino .slider-bg {
+  position: absolute;
+  top: 3px;
+  height: calc(100% - 6px);
+  background: var(--gold);
+  border-radius: 6px;
+  transition: left var(--dur-med) var(--ease-spring), width var(--dur-med) var(--ease-spring);
+  box-shadow: 0 1px 4px rgba(245, 166, 35, 0.3);
+}
+
+/* Aluminum Buttons */
+.alu-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, #D4952A 0%, #C4871E 50%, #B37A18 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  color: var(--void);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) ease;
+  box-shadow: 0 2px 8px rgba(245, 166, 35, 0.2);
+  user-select: none;
+}
+
+.alu-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
+}
+
+.alu-btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 1px 4px rgba(245, 166, 35, 0.15);
+}
+
+.alu-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--alu-mid);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) ease;
+  user-select: none;
+}
+
+.alu-btn-secondary:hover {
+  background: var(--glass-bg-hover);
+  color: var(--alu-light);
+  border-color: var(--glass-highlight);
+}
+
+.alu-btn-secondary:active {
+  transform: scale(0.98);
+}
+
+.alu-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--red);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) ease;
+  user-select: none;
+}
+
+.alu-btn-danger:hover {
+  background: rgba(248, 113, 113, 0.15);
+}
+
+.alu-btn-danger:active {
+  transform: scale(0.98);
+}
+
+.alu-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--alu-mid);
+  cursor: pointer;
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+  user-select: none;
+}
+
+.alu-btn-icon:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--alu-light);
+}
+
+.alu-btn-icon:active {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Aluminum Toggle */
+.alu-toggle {
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--void-surface);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+  flex-shrink: 0;
+}
+
+.alu-toggle.on {
+  background: var(--gold);
+  border-color: rgba(245, 166, 35, 0.4);
+}
+
+.alu-toggle .thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #52525B 0%, #3F3F46 50%, #27272A 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+
+.alu-toggle.on .thumb { transform: translateX(22px); }
+
+/* Button Bar (Fan Speed) */
+.alu-btn-bar {
+  display: flex;
+  gap: 2px;
+  background: var(--void-surface);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.alu-btn-bar .btn {
+  flex: 1;
+  padding: 8px 2px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--alu-dark);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--dur-fast) ease;
+  user-select: none;
+}
+
+.alu-btn-bar .btn.active {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: 0 1px 4px rgba(245, 166, 35, 0.3);
+}
+
+.alu-btn-bar .btn:not(.active):hover { color: var(--alu-mid); }
+
+/* Aluminum Slider */
+.alu-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.alu-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.alu-slider-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--alu-mid);
+}
+
+.alu-slider-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--alu-light);
+}
+
+input[type="range"].alu-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--void-surface);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"].alu-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #52525B 0%, #3F3F46 50%, #27272A 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+  cursor: grab;
+}
+
+input[type="range"].alu-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 4px rgba(245, 166, 35, 0.15);
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.status-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-pill.healthy { background: var(--green-dim); color: var(--green); }
+.status-pill.healthy .dot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.status-pill.warning { background: var(--orange-dim); color: var(--orange); }
+.status-pill.warning .dot { background: var(--orange); box-shadow: 0 0 6px var(--orange); }
+.status-pill.critical { background: var(--red-dim); color: var(--red); }
+.status-pill.critical .dot { background: var(--red); box-shadow: 0 0 6px var(--red); animation: pulse-dot 2s ease infinite; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Transition Panels */
+.transition-stage {
+  position: relative;
+  height: 200px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--void);
+  border: 1px solid var(--glass-border);
+}
+
+.transition-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity var(--dur-slow) var(--ease-spring), transform var(--dur-slow) var(--ease-spring);
+}
+
+.transition-panel.slide-out {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.transition-panel.slide-in-ready {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.transition-panel.fade-out {
+  opacity: 0;
+}
+
+.transition-panel.fade-in-ready {
+  opacity: 0;
+}
+
+/* Click ripple effect for buttons */
+.click-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.3);
+  transform: scale(0);
+  animation: ripple-out 400ms var(--ease-spring) forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-out {
+  to { transform: scale(2.5); opacity: 0; }
+}
+
+/* Rifle-bolt press animation */
+@keyframes rifle-bolt-press {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(2px); }
+  50%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+.rifle-bolt-click {
+  animation: rifle-bolt-press 180ms var(--ease-spring);
+}
+
+/* ─── Charts ─── */
+.chart-container {
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--void-raised);
+  border: 1px solid var(--glass-border);
+}
+
+.chart-axis-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--alu-dark);
+}
+
+.chart-grid-line {
+  stroke: rgba(255,255,255,0.04);
+  stroke-width: 1;
+}
+
+.chart-tooltip {
+  background: var(--void-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--alu-light);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+/* ─── Responsive grid demo ─── */
+.responsive-demo-grid {
+  display: grid;
+  gap: var(--sp-3);
+  transition: grid-template-columns var(--dur-med) ease;
+}
+
+.responsive-demo-cell {
+  padding: var(--sp-4);
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--alu-mid);
+}
+
+/* ─── Focus ring ─── */
+.focus-demo-item {
+  outline: none;
+}
+
+.focus-demo-item:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.focus-demo-item.focus-glass:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--gold), 0 0 0 4px rgba(245, 166, 35, 0.2);
+}
+
+/* ─── Skeleton ─── */
+@keyframes shimmer {
+  0%   { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--void-surface) 0%, var(--void-raised) 40%, var(--void-surface) 80%);
+  background-size: 400px 100%;
+  animation: shimmer 1.5s ease infinite;
+  border-radius: 4px;
+}
+
+.skeleton-text  { height: 12px; width: 60%; margin-bottom: var(--sp-2); }
+.skeleton-title { height: 18px; width: 40%; margin-bottom: var(--sp-3); }
+.skeleton-bar   { height: 100px; width: 8px; border-radius: 4px; }
+.skeleton-circle { width: 40px; height: 40px; border-radius: 50%; }
+
+/* ─── Spinner ─── */
+@keyframes luce-spin {
+  to { transform: rotate(360deg); }
+}
+
+.luce-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--void-surface);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: luce-spin 800ms linear infinite;
+}
+
+/* ─── Elevation layers ─── */
+.elevation-stack {
+  position: relative;
+  height: 300px;
+  perspective: 800px;
+}
+
+.elevation-layer {
+  position: absolute;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+</style>
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <nav class="docs-sidebar">
+    <a href="index.html" class="sidebar-brand">Luce</a>
+    <div class="sidebar-tagline">Design Guidelines</div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Foundations</div>
+      <a href="#materials" class="sidebar-sub-link">Materials</a>
+      <a href="#colors" class="sidebar-sub-link">Colors</a>
+      <a href="#typography" class="sidebar-sub-link">Typography</a>
+      <a href="#spacing" class="sidebar-sub-link">Spacing</a>
+      <a href="#motion" class="sidebar-sub-link">Motion</a>
+      <a href="#radius" class="sidebar-sub-link">Radius</a>
+      <a href="#tab-bars" class="sidebar-sub-link">Tab Bars</a>
+      <a href="#manettino" class="sidebar-sub-link">Manettino</a>
+      <a href="#buttons" class="sidebar-sub-link">Buttons</a>
+      <a href="#transitions" class="sidebar-sub-link">Transitions</a>
+      <a href="#charts" class="sidebar-sub-link">Charts</a>
+      <a href="#responsive" class="sidebar-sub-link">Responsive Layout</a>
+      <a href="#accessibility" class="sidebar-sub-link">Accessibility</a>
+      <a href="#focus-states" class="sidebar-sub-link">Focus States</a>
+      <a href="#loading-states" class="sidebar-sub-link">Loading States</a>
+      <a href="#elevation" class="sidebar-sub-link">Elevation</a>
+      <a href="#themes" class="sidebar-sub-link">Themes</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Pages</div>
+      <a href="index.html" class="sidebar-link">Home</a>
+      <a href="foundations.html" class="sidebar-link active">Foundations</a>
+      <a href="components.html" class="sidebar-link">Components</a>
+      <a href="patterns.html" class="sidebar-link">Patterns</a>
+      <a href="brand.html" class="sidebar-link">Brand</a>
+    </div>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="docs-main">
+    <div class="page-header">
+      <h1>Foundations</h1>
+      <p>The core building blocks of the Luce design language — three materials, semantic color, and a 4px spatial grid.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         MATERIALS
+         ═══════════════════════════════════════════════════ -->
+    <section id="materials">
+      <div class="section-heading">Materials</div>
+      <h2>Three Materials</h2>
+      <p>Every surface in Luce is one of three materials: Void (the darkness), Glass (translucent panels), or Aluminum (interactive controls). No other backgrounds exist.</p>
+
+      <!-- Void -->
+      <h3>Void</h3>
+      <p>The base layer. Pure darkness with subtle elevation steps. All content sits on top of void.</p>
+      <div class="demo-panel">
+        <div class="demo-row">
+          <div>
+            <div class="demo-label">--void</div>
+            <div class="swatch" onclick="copyValue('#0C0E12')">
+              <div class="swatch-color" style="background: #0C0E12;"></div>
+              <div class="swatch-info"><span class="swatch-name">void</span><span class="swatch-value">#0C0E12</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="demo-label">--void-raised</div>
+            <div class="swatch" onclick="copyValue('#12151B')">
+              <div class="swatch-color" style="background: #12151B;"></div>
+              <div class="swatch-info"><span class="swatch-name">void-raised</span><span class="swatch-value">#12151B</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="demo-label">--void-surface</div>
+            <div class="swatch" onclick="copyValue('#181B23')">
+              <div class="swatch-color" style="background: #181B23;"></div>
+              <div class="swatch-info"><span class="swatch-name">void-surface</span><span class="swatch-value">#181B23</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass -->
+      <h3>Glass</h3>
+      <p>Translucent container panels. Background blur, subtle border, and a top-edge highlight gradient. Used for cards, overlays, and grouped content.</p>
+      <div class="demo-panel">
+        <div class="demo-row">
+          <div class="glass-panel" style="width: 200px; height: 100px; padding: var(--sp-4); display: flex; align-items: center; justify-content: center;">
+            <span class="alu-text-mid" style="font-size: 13px;">Glass Panel</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--sp-2);">
+            <div style="font-size:12px; color: var(--alu-mid);">
+              <code>--glass-bg</code> <span class="mono" style="color:var(--alu-dark)">rgba(255,255,255,0.04)</span>
+            </div>
+            <div style="font-size:12px; color: var(--alu-mid);">
+              <code>--glass-border</code> <span class="mono" style="color:var(--alu-dark)">rgba(255,255,255,0.08)</span>
+            </div>
+            <div style="font-size:12px; color: var(--alu-mid);">
+              <code>--glass-blur</code> <span class="mono" style="color:var(--alu-dark)">20px</span>
+            </div>
+            <div style="font-size:12px; color: var(--alu-mid);">
+              <code>--glass-highlight</code> <span class="mono" style="color:var(--alu-dark)">rgba(255,255,255,0.12)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aluminum -->
+      <h3>Aluminum</h3>
+      <p>The interactive material. Gradient surfaces, machined thumb controls, and knurled textures. Reserved for controls that the user directly manipulates.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <!-- Aluminum thumb -->
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(145deg, #52525B 0%, #3F3F46 50%, #27272A 100%); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);"></div>
+          <!-- Aluminum knurl strip -->
+          <div style="width: 120px; height: 12px; border-radius: 6px; background: var(--alu-surface); background-image: var(--alu-knurl); border: 1px solid rgba(255,255,255,0.06);"></div>
+          <div style="display: flex; flex-direction: column; gap: var(--sp-1);">
+            <span class="swatch-value" style="cursor: pointer;" onclick="copyValue('#D4D4D8')">--alu-light #D4D4D8</span>
+            <span class="swatch-value" style="cursor: pointer;" onclick="copyValue('#A1A1AA')">--alu-mid #A1A1AA</span>
+            <span class="swatch-value" style="cursor: pointer;" onclick="copyValue('#71717A')">--alu-dark #71717A</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         COLORS
+         ═══════════════════════════════════════════════════ -->
+    <section id="colors">
+      <div class="section-heading">Colors</div>
+      <h2>Semantic Color Palette</h2>
+      <p>Color is for information only — never decoration. Each color carries a single, unambiguous meaning. Click any swatch to copy its hex value.</p>
+
+      <div class="swatch-grid">
+        <div class="swatch" onclick="copyValue('#F5A623')">
+          <div class="swatch-color" style="background: #F5A623;"></div>
+          <div class="swatch-info"><span class="swatch-name">Gold</span><span class="swatch-value">#F5A623</span></div>
+        </div>
+        <div class="swatch" onclick="copyValue('#34D399')">
+          <div class="swatch-color" style="background: #34D399;"></div>
+          <div class="swatch-info"><span class="swatch-name">Green</span><span class="swatch-value">#34D399</span></div>
+        </div>
+        <div class="swatch" onclick="copyValue('#FB923C')">
+          <div class="swatch-color" style="background: #FB923C;"></div>
+          <div class="swatch-info"><span class="swatch-name">Orange</span><span class="swatch-value">#FB923C</span></div>
+        </div>
+        <div class="swatch" onclick="copyValue('#F87171')">
+          <div class="swatch-color" style="background: #F87171;"></div>
+          <div class="swatch-info"><span class="swatch-name">Red</span><span class="swatch-value">#F87171</span></div>
+        </div>
+        <div class="swatch" onclick="copyValue('#60A5FA')">
+          <div class="swatch-color" style="background: #60A5FA;"></div>
+          <div class="swatch-info"><span class="swatch-name">Blue</span><span class="swatch-value">#60A5FA</span></div>
+        </div>
+        <div class="swatch" onclick="copyValue('#A78BFA')">
+          <div class="swatch-color" style="background: #A78BFA;"></div>
+          <div class="swatch-info"><span class="swatch-name">Purple</span><span class="swatch-value">#A78BFA</span></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Semantic Meaning</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <span style="color: var(--gold); font-weight: 600;">Gold</span>
+          <span class="alu-text-mid">Active state, primary action, accent — the Ferrari signature</span>
+          <span style="color: var(--green); font-weight: 600;">Green</span>
+          <span class="alu-text-mid">Healthy, connected, success, temperature</span>
+          <span style="color: var(--orange); font-weight: 600;">Orange</span>
+          <span class="alu-text-mid">Warning, attention needed, dosing</span>
+          <span style="color: var(--red); font-weight: 600;">Red</span>
+          <span class="alu-text-mid">Critical, offline, error, destructive action</span>
+          <span style="color: var(--blue); font-weight: 600;">Blue</span>
+          <span class="alu-text-mid">Water, humidity, informational</span>
+          <span style="color: var(--purple); font-weight: 600;">Purple</span>
+          <span class="alu-text-mid">AI insights, machine intelligence</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Dim Variants</h3>
+      <p>Each color has a <code>-dim</code> variant for subtle backgrounds (status pills, badges, tinted containers).</p>
+      <div class="demo-panel">
+        <div class="demo-row">
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--gold-dim); color: var(--gold); font-size: 12px; font-weight: 500;">Gold dim</div>
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--green-dim); color: var(--green); font-size: 12px; font-weight: 500;">Green dim</div>
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--orange-dim); color: var(--orange); font-size: 12px; font-weight: 500;">Orange dim</div>
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--red-dim); color: var(--red); font-size: 12px; font-weight: 500;">Red dim</div>
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--blue-dim); color: var(--blue); font-size: 12px; font-weight: 500;">Blue dim</div>
+          <div style="padding: 6px 12px; border-radius: var(--radius-full); background: var(--purple-dim); color: var(--purple); font-size: 12px; font-weight: 500;">Purple dim</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Aluminum Text Scale</h3>
+      <p>Text hierarchy uses three aluminum tones — no color unless communicating status.</p>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: var(--sp-3);">
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #D4D4D8; font-size: 15px; font-weight: 500; min-width: 160px;">Primary #D4D4D8</span>
+            <span class="mono swatch-value" style="cursor:pointer;" onclick="copyValue('#D4D4D8')">--alu-light</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #A1A1AA; font-size: 15px; font-weight: 500; min-width: 160px;">Secondary #A1A1AA</span>
+            <span class="mono swatch-value" style="cursor:pointer;" onclick="copyValue('#A1A1AA')">--alu-mid</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #71717A; font-size: 15px; font-weight: 500; min-width: 160px;">Tertiary #71717A</span>
+            <span class="mono swatch-value" style="cursor:pointer;" onclick="copyValue('#71717A')">--alu-dark</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #FAFAFA; font-size: 15px; font-weight: 600; min-width: 160px;">Headings #FAFAFA</span>
+            <span class="mono swatch-value">white (not a token)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         TYPOGRAPHY
+         ═══════════════════════════════════════════════════ -->
+    <section id="typography">
+      <div class="section-heading">Typography</div>
+      <h2>Type System</h2>
+      <p>Two fonts, strict roles: DM Sans for all reading text, JetBrains Mono for data values and code.</p>
+
+      <h3>DM Sans — Body &amp; UI</h3>
+      <div class="type-specimen">
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 32px; font-weight: 700; color: #FAFAFA;">The quick brown fox</div>
+          <div class="type-meta"><span>DM Sans 700</span><span>32px</span><span>Display / Hero</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 22px; font-weight: 600; color: #FAFAFA;">Screen titles and section headers</div>
+          <div class="type-meta"><span>DM Sans 600</span><span>22px</span><span>Screen Title</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: #FAFAFA;">Device name, card title</div>
+          <div class="type-meta"><span>DM Sans 600</span><span>15px</span><span>Card Title</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 14px; font-weight: 400; color: var(--alu-mid);">Body text for descriptions, insights, and content paragraphs</div>
+          <div class="type-meta"><span>DM Sans 400</span><span>14px</span><span>Body</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--alu-mid);">Control labels, slider labels</div>
+          <div class="type-meta"><span>DM Sans 500</span><span>12px</span><span>Label</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu-dark);">SECTION HEADING</div>
+          <div class="type-meta"><span>DM Sans 600</span><span>10px</span><span>Section Label (uppercase, tracked)</span></div>
+        </div>
+      </div>
+
+      <h3>JetBrains Mono — Data &amp; Code</h3>
+      <div class="type-specimen">
+        <div class="type-sample">
+          <div style="font-family: var(--font-mono); font-size: 32px; font-weight: 600; color: #FAFAFA;">22.4</div>
+          <div class="type-meta"><span>JetBrains Mono 600</span><span>32px</span><span>Hero Metric (bar gauge)</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: #FAFAFA;">1.82 <span style="font-size: 11px; color: var(--alu-dark);">mS/cm</span></div>
+          <div class="type-meta"><span>JetBrains Mono 500</span><span>20px</span><span>Metric Card Value</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--alu-light);">285 µmol</div>
+          <div class="type-meta"><span>JetBrains Mono 500</span><span>14px</span><span>Slider Value</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--gold);">BR-20260215-001</div>
+          <div class="type-meta"><span>JetBrains Mono 500</span><span>13px</span><span>Lot Number / ID</span></div>
+        </div>
+        <div class="type-sample">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">looper-dagze-1</div>
+          <div class="type-meta"><span>JetBrains Mono 400</span><span>11px</span><span>Device ID / Metadata</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SPACING
+         ═══════════════════════════════════════════════════ -->
+    <section id="spacing">
+      <div class="section-heading">Spacing</div>
+      <h2>4px Grid</h2>
+      <p>All spacing uses multiples of 4px. The named tokens skip <code>--sp-7</code>, <code>--sp-9</code>, and <code>--sp-11</code> — use the ones below.</p>
+
+      <div class="demo-panel">
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-1 <span style="color:var(--alu-dark)">4px</span></div>
+          <div class="spacing-visual" style="width: 4px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-2 <span style="color:var(--alu-dark)">8px</span></div>
+          <div class="spacing-visual" style="width: 8px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-3 <span style="color:var(--alu-dark)">12px</span></div>
+          <div class="spacing-visual" style="width: 12px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-4 <span style="color:var(--alu-dark)">16px</span></div>
+          <div class="spacing-visual" style="width: 16px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-5 <span style="color:var(--alu-dark)">20px</span></div>
+          <div class="spacing-visual" style="width: 20px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-6 <span style="color:var(--alu-dark)">24px</span></div>
+          <div class="spacing-visual" style="width: 24px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-8 <span style="color:var(--alu-dark)">32px</span></div>
+          <div class="spacing-visual" style="width: 32px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-10 <span style="color:var(--alu-dark)">40px</span></div>
+          <div class="spacing-visual" style="width: 40px;"></div>
+        </div>
+        <div class="spacing-bar">
+          <div class="spacing-label">--sp-12 <span style="color:var(--alu-dark)">48px</span></div>
+          <div class="spacing-visual" style="width: 48px;"></div>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        <pre><code>/* Usage */
+padding: var(--sp-4);           /* 16px */
+gap: var(--sp-3);               /* 12px */
+margin-bottom: var(--sp-6);     /* 24px */</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         MOTION
+         ═══════════════════════════════════════════════════ -->
+    <section id="motion">
+      <div class="section-heading">Motion</div>
+      <h2>Motion &amp; Easing</h2>
+      <p>One easing curve for all spring-like animations, three durations for different interaction scales. The Ferrari Luce's physical controls were tested 20+ times each for "the most harmonious combination of mechanical and acoustic feedback" — our digital easing captures the same precision: a fast, decisive launch followed by a gentle engineered settle.</p>
+
+      <h3>Spring Easing</h3>
+      <p><code>--ease-spring: cubic-bezier(0.16, 1, 0.3, 1)</code> — fast launch, gentle settle. The curve overshoots by ~3% then decays, mimicking a physical detent clicking into place. Used for all interactive transitions (sliders, toggles, manettinos, navigation).</p>
+
+      <div class="demo-panel">
+        <div class="demo-description">Click "Animate" to see each duration with the spring easing curve.</div>
+        <div class="motion-demo" id="motion-demo">
+          <div class="motion-track">
+            <span class="motion-label">Fast <span style="color:var(--alu-dark)">200ms</span></span>
+            <div class="motion-rail"><div class="motion-dot" data-duration="200"></div></div>
+          </div>
+          <div class="motion-track">
+            <span class="motion-label">Medium <span style="color:var(--alu-dark)">350ms</span></span>
+            <div class="motion-rail"><div class="motion-dot" data-duration="350"></div></div>
+          </div>
+          <div class="motion-track">
+            <span class="motion-label">Slow <span style="color:var(--alu-dark)">500ms</span></span>
+            <div class="motion-rail"><div class="motion-dot" data-duration="500"></div></div>
+          </div>
+        </div>
+        <div style="margin-top: var(--sp-4);">
+          <button class="motion-trigger" onclick="animateMotionDemo()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            Animate
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Duration Guidelines</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <code>--dur-fast</code>
+          <span class="alu-text-mid">200ms — hover states, color changes, small toggles</span>
+          <code>--dur-med</code>
+          <span class="alu-text-mid">350ms — manettino slides, toggle thumbs, panel transitions</span>
+          <code>--dur-slow</code>
+          <span class="alu-text-mid">500ms — screen transitions, bar gauge fills, chart draw-in</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         RADIUS
+         ═══════════════════════════════════════════════════ -->
+    <section id="radius">
+      <div class="section-heading">Radius</div>
+      <h2>Border Radius Scale</h2>
+      <p>Five radius values from subtle to pill. Components use the smallest radius that matches their scale.</p>
+
+      <div class="demo-panel">
+        <div class="radius-grid">
+          <div class="radius-sample">
+            <div class="radius-box" style="border-radius: 8px;"></div>
+            <div class="radius-meta">sm<br>8px</div>
+          </div>
+          <div class="radius-sample">
+            <div class="radius-box" style="border-radius: 12px;"></div>
+            <div class="radius-meta">md<br>12px</div>
+          </div>
+          <div class="radius-sample">
+            <div class="radius-box" style="border-radius: 16px;"></div>
+            <div class="radius-meta">lg<br>16px</div>
+          </div>
+          <div class="radius-sample">
+            <div class="radius-box" style="border-radius: 20px;"></div>
+            <div class="radius-meta">xl<br>20px</div>
+          </div>
+          <div class="radius-sample">
+            <div class="radius-box" style="border-radius: 9999px;"></div>
+            <div class="radius-meta">full<br>9999px</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Usage Guide</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <code>--radius-sm</code>
+          <span class="alu-text-mid">Buttons, inputs, manettino, small cards</span>
+          <code>--radius-md</code>
+          <span class="alu-text-mid">Glass panels, metric cards, standard containers</span>
+          <code>--radius-lg</code>
+          <span class="alu-text-mid">Large cards, modal containers</span>
+          <code>--radius-xl</code>
+          <span class="alu-text-mid">Hero cards, feature panels</span>
+          <code>--radius-full</code>
+          <span class="alu-text-mid">Status pills, radio dots, circular avatars</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         TAB BARS
+         ═══════════════════════════════════════════════════ -->
+    <section id="tab-bars">
+      <div class="section-heading">Interactive Previews</div>
+      <h2>Tab Bars</h2>
+      <p>Two tab bar styles: the global bottom bar for top-level navigation (4 tabs), and the detail Manettino bar for in-screen tabs. Both use gold as the active indicator — tapping switches instantly with no page reload, mirroring the Ferrari Luce's physical toggle response.</p>
+
+      <h3>Global Bottom Tab Bar</h3>
+      <p>Blurred void background, gold active state, uppercase labels. Click to switch.</p>
+      <div class="demo-panel">
+        <div class="demo-tab-bar" id="demo-global-tab">
+          <div class="tab-item active" onclick="switchDemoTab(this, 'demo-global-tab')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span class="tab-label">Devices</span>
+          </div>
+          <div class="tab-item" onclick="switchDemoTab(this, 'demo-global-tab')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+            <span class="tab-label">Records</span>
+          </div>
+          <div class="tab-item" onclick="switchDemoTab(this, 'demo-global-tab')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="tab-label">Activity</span>
+          </div>
+          <div class="tab-item" onclick="switchDemoTab(this, 'demo-global-tab')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="tab-label">Profile</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Detail Manettino Tab Bar</h3>
+      <p>Used inside device detail screens. The gold slider tracks the active segment with spring easing — like the physical Manettino dial on the Ferrari Luce steering wheel, where left and right pods control driving modes via satisfying toggle clicks.</p>
+      <div class="demo-panel">
+        <div class="alu-manettino" id="demo-detail-manettino">
+          <div class="slider-bg"></div>
+          <div class="segment active" onclick="switchManettino(this)">Monitor</div>
+          <div class="segment" onclick="switchManettino(this)">Controls</div>
+          <div class="segment" onclick="switchManettino(this)">Program</div>
+          <div class="segment" onclick="switchManettino(this)">Logs</div>
+        </div>
+        <div style="margin-top: var(--sp-4); font-size: 12px; color: var(--alu-dark);">
+          <code>transition: left 350ms cubic-bezier(0.16, 1, 0.3, 1)</code> — the slider overshoots slightly then settles, like a physical detent clicking into place.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         MANETTINO
+         ═══════════════════════════════════════════════════ -->
+    <section id="manettino">
+      <div class="section-heading">Segmented Controls</div>
+      <h2>Manettino</h2>
+      <p>Named after the red dial on Ferrari steering wheels. In the real Luce, the steering wheel has 19 CNC-machined aluminum parts with dual Manettino pods — left for drive modes (Range / Tour / Performance), right for chassis (Ice / Wet / Dry / Sport / ESC Off). Our digital version captures the same satisfying detent-to-detent feel through spring-eased sliding highlights.</p>
+
+      <h3>Spectrum Mode (4 segments)</h3>
+      <div class="demo-panel">
+        <div class="alu-manettino" id="manettino-spectrum">
+          <div class="slider-bg"></div>
+          <div class="segment active" onclick="switchManettino(this)">VEG</div>
+          <div class="segment" onclick="switchManettino(this)">BLOOM</div>
+          <div class="segment" onclick="switchManettino(this)">FULL</div>
+          <div class="segment" onclick="switchManettino(this)">CUSTOM</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Drive Mode (3 segments)</h3>
+      <p>Inspired by the Luce's left Manettino pod. Fewer segments = wider highlight.</p>
+      <div class="demo-panel">
+        <div class="alu-manettino" id="manettino-drive">
+          <div class="slider-bg"></div>
+          <div class="segment active" onclick="switchManettino(this)">RANGE</div>
+          <div class="segment" onclick="switchManettino(this)">TOUR</div>
+          <div class="segment" onclick="switchManettino(this)">PERFORMANCE</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Chassis Mode (5 segments)</h3>
+      <p>Inspired by the Luce's right Manettino pod — stability control settings.</p>
+      <div class="demo-panel">
+        <div class="alu-manettino" id="manettino-chassis">
+          <div class="slider-bg"></div>
+          <div class="segment active" onclick="switchManettino(this)">ICE</div>
+          <div class="segment" onclick="switchManettino(this)">WET</div>
+          <div class="segment" onclick="switchManettino(this)">DRY</div>
+          <div class="segment" onclick="switchManettino(this)">SPORT</div>
+          <div class="segment" onclick="switchManettino(this)">ESC OFF</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Paired Controls</h3>
+      <p>Manettino often pairs with sliders and toggles. The full control group below mirrors the device controls screen.</p>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: var(--sp-5); max-width: 400px;">
+          <!-- Manettino -->
+          <div>
+            <div class="demo-label">Spectrum Mode</div>
+            <div class="alu-manettino" id="manettino-paired">
+              <div class="slider-bg"></div>
+              <div class="segment active" onclick="switchManettino(this)">VEG</div>
+              <div class="segment" onclick="switchManettino(this)">BLOOM</div>
+              <div class="segment" onclick="switchManettino(this)">FULL</div>
+            </div>
+          </div>
+          <!-- Slider -->
+          <div class="alu-slider-wrap">
+            <div class="alu-slider-header">
+              <span class="alu-slider-label">PPFD Intensity</span>
+              <span class="alu-slider-value" id="demo-ppfd-val">285 µmol</span>
+            </div>
+            <input type="range" class="alu-slider" min="0" max="600" value="285" oninput="document.getElementById('demo-ppfd-val').textContent = this.value + ' µmol'">
+          </div>
+          <!-- Toggle -->
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <span style="font-size: 13px; font-weight: 500; color: var(--alu-mid);">Irrigation</span>
+              <span id="demo-toggle-label" style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); margin-left: var(--sp-2);">AUTO</span>
+            </div>
+            <div class="alu-toggle on" onclick="toggleSwitch(this, 'demo-toggle-label')">
+              <div class="thumb"></div>
+            </div>
+          </div>
+          <!-- Button Bar -->
+          <div>
+            <div class="demo-label">Fan Speed</div>
+            <div class="alu-btn-bar">
+              <div class="btn" onclick="switchBtnBar(this)">OFF</div>
+              <div class="btn" onclick="switchBtnBar(this)">LOW</div>
+              <div class="btn active" onclick="switchBtnBar(this)">MED</div>
+              <div class="btn" onclick="switchBtnBar(this)">HIGH</div>
+              <div class="btn" onclick="switchBtnBar(this)">MAX</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         BUTTONS
+         ═══════════════════════════════════════════════════ -->
+    <section id="buttons">
+      <div class="section-heading">Controls</div>
+      <h2>Buttons</h2>
+      <p>Luce buttons follow the Ferrari principle: <em>"every single switch feels different, so you don't need to look."</em> The real Luce's buttons underwent 20+ evaluation tests for mechanical and acoustic feedback — clicks that feel like rifle bolts. Our digital buttons approximate this with distinct press animations per variant.</p>
+
+      <h3>Primary Action</h3>
+      <p>Gold gradient with lift-on-hover, press-down-on-click. Reserved for the most important action on screen.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <button class="alu-btn-primary" onclick="rifleBoltClick(this)">Enter System</button>
+          <button class="alu-btn-primary" onclick="rifleBoltClick(this)">Save Changes</button>
+          <button class="alu-btn-primary" onclick="rifleBoltClick(this)" style="padding: 10px 16px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;"><polygon points="5,3 19,12 5,21"/></svg>
+            Start Cycle
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Secondary / Glass</h3>
+      <p>Glass material button for secondary actions. Subtle hover brightening.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <button class="alu-btn-secondary">Cancel</button>
+          <button class="alu-btn-secondary">View Details</button>
+          <button class="alu-btn-secondary">Export Data</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Destructive</h3>
+      <p>Red-tinted for dangerous or irreversible actions.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <button class="alu-btn-danger">Logout</button>
+          <button class="alu-btn-danger">Delete Record</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Icon Buttons</h3>
+      <p>Circular hit targets for toolbar actions. No background at rest, subtle fill on hover.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <button class="alu-btn-icon" title="Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+          <button class="alu-btn-icon" title="Back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="alu-btn-icon" title="Refresh">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </button>
+          <button class="alu-btn-icon" title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Status Pills</h3>
+      <p>Not buttons per se, but tappable status indicators with semantic color + animated dots.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered">
+          <div class="status-pill healthy"><span class="dot"></span>Healthy</div>
+          <div class="status-pill warning"><span class="dot"></span>Warning</div>
+          <div class="status-pill critical"><span class="dot"></span>Critical</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Toggle &amp; Button Bar</h3>
+      <p>The aluminum toggle uses spring easing for the thumb — fast launch, gentle settle. The button bar provides discrete step selection (like the Luce's physical fan speed detents).</p>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: var(--sp-5); max-width: 300px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 13px; color: var(--alu-mid);">Climate Control</span>
+            <div class="alu-toggle on" onclick="toggleSwitch(this)"><div class="thumb"></div></div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 13px; color: var(--alu-mid);">UV Sterilizer</span>
+            <div class="alu-toggle" onclick="toggleSwitch(this)"><div class="thumb"></div></div>
+          </div>
+          <div>
+            <div class="demo-label" style="margin-bottom: var(--sp-2);">Fan Speed</div>
+            <div class="alu-btn-bar">
+              <div class="btn" onclick="switchBtnBar(this)">OFF</div>
+              <div class="btn" onclick="switchBtnBar(this)">LOW</div>
+              <div class="btn active" onclick="switchBtnBar(this)">MED</div>
+              <div class="btn" onclick="switchBtnBar(this)">HIGH</div>
+              <div class="btn" onclick="switchBtnBar(this)">MAX</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         TRANSITIONS
+         ═══════════════════════════════════════════════════ -->
+    <section id="transitions">
+      <div class="section-heading">Animation</div>
+      <h2>Transitions</h2>
+      <p>Screen transitions use the spring easing at 500ms — the content slides 30px in the direction of navigation. Inspired by the Ferrari Luce instrument cluster where gauges "change and morph" between driving modes with analog fluidity, never jarring digital cuts.</p>
+
+      <h3>Screen Navigation (Slide)</h3>
+      <p>Forward navigation slides content left-to-right; back navigation reverses. Click the buttons to see the transition.</p>
+      <div class="demo-panel">
+        <div class="transition-stage" id="transition-slide-stage">
+          <div class="transition-panel" id="slide-panel-a" style="background: var(--void-raised); color: var(--alu-light);">
+            <div style="text-align: center;">
+              <div style="font-size: 16px; font-weight: 600; color: #FAFAFA; margin-bottom: 4px;">Fleet Dashboard</div>
+              <div style="font-size: 12px; color: var(--alu-dark);">Screen A</div>
+            </div>
+          </div>
+          <div class="transition-panel slide-in-ready" id="slide-panel-b" style="background: var(--void-surface); color: var(--alu-light);">
+            <div style="text-align: center;">
+              <div style="font-size: 16px; font-weight: 600; color: var(--gold); margin-bottom: 4px;">Device Detail</div>
+              <div style="font-size: 12px; color: var(--alu-dark);">Screen B</div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: var(--sp-3); margin-top: var(--sp-4);">
+          <button class="alu-btn-secondary" onclick="playSlideTransition('forward')">Navigate Forward</button>
+          <button class="alu-btn-secondary" onclick="playSlideTransition('back')">Navigate Back</button>
+        </div>
+        <div style="margin-top: var(--sp-3); font-size: 12px; color: var(--alu-dark);">
+          <code>transform: translateX(30px)</code> + <code>opacity: 0</code> &rarr; <code>translateX(0)</code> + <code>opacity: 1</code> at <code>500ms cubic-bezier(0.16, 1, 0.3, 1)</code>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Tab Content (Fade + Rise)</h3>
+      <p>Content within tabs fades in with a subtle 8px upward rise. Lighter than a full screen transition.</p>
+      <div class="demo-panel">
+        <div class="transition-stage" id="transition-fade-stage">
+          <div class="transition-panel" id="fade-panel-a" style="background: var(--void-raised); color: var(--alu-light);">
+            <div style="text-align: center;">
+              <div style="font-size: 16px; font-weight: 600; color: var(--green); margin-bottom: 4px;">Monitor Tab</div>
+              <div style="font-size: 12px; color: var(--alu-dark);">Sensor readings, gauges, charts</div>
+            </div>
+          </div>
+          <div class="transition-panel fade-in-ready" id="fade-panel-b" style="background: var(--void-surface); color: var(--alu-light);">
+            <div style="text-align: center;">
+              <div style="font-size: 16px; font-weight: 600; color: var(--gold); margin-bottom: 4px;">Controls Tab</div>
+              <div style="font-size: 12px; color: var(--alu-dark);">Sliders, toggles, manettinos</div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: var(--sp-3); margin-top: var(--sp-4);">
+          <button class="alu-btn-secondary" onclick="playFadeTransition()">Switch Tab</button>
+        </div>
+        <div style="margin-top: var(--sp-3); font-size: 12px; color: var(--alu-dark);">
+          <code>opacity: 0; transform: translateY(8px)</code> &rarr; <code>opacity: 1; translateY(0)</code> at <code>200ms ease</code>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Bar Gauge Fill</h3>
+      <p>Sensor bar gauges fill from zero on screen entry with a 1-second spring animation, staggered per bar. Like the Luce's layered OLED instrument dials coming alive when the glass key is inserted.</p>
+      <div class="demo-panel">
+        <div style="display: flex; align-items: flex-end; justify-content: center; gap: var(--sp-8); padding: var(--sp-4) 0;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div style="font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: #FAFAFA;">22.4</div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--alu-dark);">°C</div>
+            <div style="width: 8px; height: 100px; background: var(--void-surface); border-radius: 4px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.04);">
+              <div class="demo-bar-fill" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; border-radius: inherit; background: var(--green); box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);" data-target="56"></div>
+            </div>
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--alu-dark);">Temp</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div style="font-family: var(--font-mono); font-size: 24px; font-weight: 500; color: #FAFAFA;">0.92</div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--alu-dark);">kPa</div>
+            <div style="width: 10px; height: 140px; background: var(--void-surface); border-radius: 5px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.04);">
+              <div class="demo-bar-fill" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; border-radius: inherit; background: var(--gold); box-shadow: 0 0 12px rgba(245, 166, 35, 0.3);" data-target="46"></div>
+            </div>
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--alu-dark);">VPD</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div style="font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: #FAFAFA;">68</div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--alu-dark);">% RH</div>
+            <div style="width: 8px; height: 100px; background: var(--void-surface); border-radius: 4px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.04);">
+              <div class="demo-bar-fill" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; border-radius: inherit; background: var(--blue); box-shadow: 0 0 12px rgba(96, 165, 250, 0.3);" data-target="68"></div>
+            </div>
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--alu-dark);">Humidity</div>
+          </div>
+        </div>
+        <div style="margin-top: var(--sp-3);">
+          <button class="alu-btn-secondary" onclick="animateBarGauges()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;"><polygon points="5,3 19,12 5,21"/></svg>
+            Animate Fill
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Choreography Principles</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: start; font-size: 13px;">
+          <span style="color: var(--gold); font-weight: 600;">Stagger</span>
+          <span class="alu-text-mid">Multiple elements enter in sequence (50–100ms apart), never simultaneously. Like the Luce's three instrument dials powering up one by one.</span>
+          <span style="color: var(--gold); font-weight: 600;">Overshoot</span>
+          <span class="alu-text-mid">Spring easing overshoots slightly before settling. Feels physical — like a toggle snapping into its detent.</span>
+          <span style="color: var(--gold); font-weight: 600;">Direction</span>
+          <span class="alu-text-mid">Forward navigation = content enters from right. Back = enters from left. Maintains spatial consistency.</span>
+          <span style="color: var(--gold); font-weight: 600;">Hierarchy</span>
+          <span class="alu-text-mid">Larger elements animate slower (500ms), smaller elements faster (200ms). Gauges fill slowly; toggles snap instantly.</span>
+          <span style="color: var(--gold); font-weight: 600;">No bounce</span>
+          <span class="alu-text-mid">Unlike Material Design, Luce never bounces. The spring curve has a single overshoot — engineered precision, not playfulness.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         CHARTS
+         ═══════════════════════════════════════════════════ -->
+    <section id="charts">
+      <div class="section-heading">Data Visualization</div>
+      <h2>Charts</h2>
+      <p>Charts are the primary UI of LuminaOS — technicians spend most of their time reading sensor data. Every chart element follows the Luce material system: void backgrounds, glass containers, aluminum text, semantic color for data series. Inspired by the Ferrari Luce's instrument cluster where two OLED layers create layered, depth-rich dials that feel analog.</p>
+
+      <h3>Line Chart (Time Series)</h3>
+      <p>The workhorse. Environmental data over time — temperature, humidity, VPD, CO₂. Single or multi-series.</p>
+      <div class="demo-panel">
+        <div class="chart-container">
+          <svg width="100%" height="160" viewBox="0 0 400 160" preserveAspectRatio="none" id="demo-line-chart">
+            <!-- Grid -->
+            <line x1="0" y1="40" x2="400" y2="40" class="chart-grid-line"/>
+            <line x1="0" y1="80" x2="400" y2="80" class="chart-grid-line"/>
+            <line x1="0" y1="120" x2="400" y2="120" class="chart-grid-line"/>
+            <!-- Axis labels -->
+            <text x="4" y="38" class="chart-axis-label">30°</text>
+            <text x="4" y="78" class="chart-axis-label">22°</text>
+            <text x="4" y="118" class="chart-axis-label">14°</text>
+            <text x="380" y="155" class="chart-axis-label">now</text>
+            <text x="200" y="155" class="chart-axis-label">-12h</text>
+            <text x="30" y="155" class="chart-axis-label">-24h</text>
+            <!-- Area fill -->
+            <path d="" id="chart-area-fill" fill="rgba(52, 211, 153, 0.08)" stroke="none"/>
+            <!-- Line -->
+            <polyline id="chart-main-line" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points=""/>
+            <!-- Second series -->
+            <polyline id="chart-second-line" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3" points=""/>
+          </svg>
+        </div>
+        <div style="display: flex; gap: var(--sp-4); margin-top: var(--sp-3); font-size: 12px;">
+          <div style="display: flex; align-items: center; gap: var(--sp-2);"><span style="width: 16px; height: 2px; background: var(--green); border-radius: 1px;"></span><span class="alu-text-mid">Temperature</span></div>
+          <div style="display: flex; align-items: center; gap: var(--sp-2);"><span style="width: 16px; height: 2px; background: var(--blue); border-radius: 1px; border-top: 1px dashed var(--blue);"></span><span class="alu-text-mid">Humidity</span></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Sparkline (Inline)</h3>
+      <p>Compact trend indicator inside metric cards. No axes, no labels — just the shape of the data. Draws in with a stroke-dashoffset animation on entry.</p>
+      <div class="demo-panel">
+        <div class="demo-row" style="gap: var(--sp-6);">
+          <div class="glass-panel" style="padding: var(--sp-3) var(--sp-4); min-width: 120px;">
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: 2px;">PPFD</div>
+            <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--alu-light);">285 <span style="font-size: 11px; color: var(--alu-dark);">µmol</span></div>
+            <svg width="80" height="20" viewBox="0 0 80 20" style="margin-top: 4px;"><polyline class="demo-spark" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points=""/></svg>
+          </div>
+          <div class="glass-panel" style="padding: var(--sp-3) var(--sp-4); min-width: 120px;">
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: 2px;">pH</div>
+            <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--alu-light);">6.2</div>
+            <svg width="80" height="20" viewBox="0 0 80 20" style="margin-top: 4px;"><polyline class="demo-spark" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points=""/></svg>
+          </div>
+          <div class="glass-panel" style="padding: var(--sp-3) var(--sp-4); min-width: 120px;">
+            <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: 2px;">EC</div>
+            <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--alu-light);">1.8 <span style="font-size: 11px; color: var(--alu-dark);">mS</span></div>
+            <svg width="80" height="20" viewBox="0 0 80 20" style="margin-top: 4px;"><polyline class="demo-spark" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points=""/></svg>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Vertical Bar Gauge</h3>
+      <p>Already demoed in the Transitions section — primary sensor readout with spring-animated fill. Not a chart per se, but the key data visualization at the top of every device screen.</p>
+
+      <h3 style="margin-top: var(--sp-6);">Horizontal Bar (LED Channels)</h3>
+      <p>Horizontal fill bars for multi-channel display — LED spectrum, resource usage, progress.</p>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: 6px; max-width: 360px;">
+          <div style="display: flex; align-items: center; gap: var(--sp-3);">
+            <span style="font-size: 11px; color: var(--alu-mid); width: 48px; flex-shrink: 0;">Main</span>
+            <div style="flex: 1; height: 4px; background: var(--void-surface); border-radius: 2px; overflow: hidden;">
+              <div class="demo-hbar" style="height: 100%; border-radius: 2px; background: #FAFAFA; width: 0%;" data-target="75"></div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); width: 50px; text-align: right;">75%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-3);">
+            <span style="font-size: 11px; color: var(--alu-mid); width: 48px; flex-shrink: 0;">450nm</span>
+            <div style="flex: 1; height: 4px; background: var(--void-surface); border-radius: 2px; overflow: hidden;">
+              <div class="demo-hbar" style="height: 100%; border-radius: 2px; background: #60A5FA; width: 0%;" data-target="60"></div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); width: 50px; text-align: right;">60%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-3);">
+            <span style="font-size: 11px; color: var(--alu-mid); width: 48px; flex-shrink: 0;">660nm</span>
+            <div style="flex: 1; height: 4px; background: var(--void-surface); border-radius: 2px; overflow: hidden;">
+              <div class="demo-hbar" style="height: 100%; border-radius: 2px; background: #F87171; width: 0%;" data-target="85"></div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); width: 50px; text-align: right;">85%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-3);">
+            <span style="font-size: 11px; color: var(--alu-mid); width: 48px; flex-shrink: 0;">730nm</span>
+            <div style="flex: 1; height: 4px; background: var(--void-surface); border-radius: 2px; overflow: hidden;">
+              <div class="demo-hbar" style="height: 100%; border-radius: 2px; background: #C2185B; width: 0%;" data-target="40"></div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); width: 50px; text-align: right;">40%</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-3);">
+            <span style="font-size: 11px; color: var(--alu-mid); width: 48px; flex-shrink: 0;">UV</span>
+            <div style="flex: 1; height: 4px; background: var(--void-surface); border-radius: 2px; overflow: hidden;">
+              <div class="demo-hbar" style="height: 100%; border-radius: 2px; background: var(--purple); width: 0%;" data-target="0"></div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark); width: 50px; text-align: right;">0%</span>
+          </div>
+        </div>
+        <div style="margin-top: var(--sp-4);">
+          <button class="alu-btn-secondary" onclick="animateHBars()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;"><polygon points="5,3 19,12 5,21"/></svg>
+            Animate
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Chart Styling Tokens</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <span style="color: var(--gold); font-weight: 600;">Background</span>
+          <span class="alu-text-mid"><code>--void-raised</code> (#12151B) — chart sits in a raised void container, never raw void</span>
+          <span style="color: var(--gold); font-weight: 600;">Grid lines</span>
+          <span class="alu-text-mid"><code>rgba(255,255,255,0.04)</code> — barely visible, guides the eye without competing with data</span>
+          <span style="color: var(--gold); font-weight: 600;">Axis text</span>
+          <span class="alu-text-mid"><code>--alu-dark</code> in JetBrains Mono 10px — recedes completely</span>
+          <span style="color: var(--gold); font-weight: 600;">Data lines</span>
+          <span class="alu-text-mid">2px stroke, semantic color (green=temp, blue=humidity, gold=PPFD, orange=CO₂)</span>
+          <span style="color: var(--gold); font-weight: 600;">Area fill</span>
+          <span class="alu-text-mid">Same color at 8% opacity — subtle ground under the line</span>
+          <span style="color: var(--gold); font-weight: 600;">Tooltip</span>
+          <span class="alu-text-mid"><code>--void-surface</code> bg, <code>--glass-border</code>, mono text, 6px radius</span>
+          <span style="color: var(--gold); font-weight: 600;">Second series</span>
+          <span class="alu-text-mid">Dashed line (4px dash, 3px gap), 1.5px stroke — visually subordinate to primary</span>
+          <span style="color: var(--gold); font-weight: 600;">Max series</span>
+          <span class="alu-text-mid">3 lines max per chart. Beyond that, use small multiples (separate charts)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         RESPONSIVE LAYOUT
+         ═══════════════════════════════════════════════════ -->
+    <section id="responsive">
+      <div class="section-heading">Layout</div>
+      <h2>Responsive Layout</h2>
+      <p>Luce targets three platforms: phone (390px), tablet (768–1024px), and web (1280px+). The layout system uses a flexible column grid with content-density rules that prevent wasted space and awkward gaps.</p>
+
+      <h3>Breakpoints</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <code>--bp-phone</code> <span class="mono" style="color: var(--alu-dark);">&lt; 640px</span>
+          <span class="alu-text-mid">Single column, full-width cards, bottom tab bar</span>
+          <code>--bp-tablet</code> <span class="mono" style="color: var(--alu-dark);">640–1024px</span>
+          <span class="alu-text-mid">2-column grid, persistent sidebar (landscape) or hamburger (portrait)</span>
+          <code>--bp-desktop</code> <span class="mono" style="color: var(--alu-dark);">&ge; 1025px</span>
+          <span class="alu-text-mid">Multi-column dashboard, persistent sidebar, expanded data density</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Content Density Rule</h3>
+      <p>When a grid has fewer items than columns, check if items can fit in a single row. <strong>If N items can fit at comfortable width in one row, use Nx1 instead of filling a 2x2 grid with an empty cell.</strong> No orphan cells, no wasted void.</p>
+
+      <div class="demo-panel">
+        <div class="demo-label" style="margin-bottom: var(--sp-3);">4 items &rarr; 2x2 grid (default)</div>
+        <div class="responsive-demo-grid" style="grid-template-columns: 1fr 1fr; max-width: 400px; margin-bottom: var(--sp-5);">
+          <div class="responsive-demo-cell">PPFD<br><span style="font-size: 18px; color: #FAFAFA;">285</span></div>
+          <div class="responsive-demo-cell">pH<br><span style="font-size: 18px; color: #FAFAFA;">6.2</span></div>
+          <div class="responsive-demo-cell">EC<br><span style="font-size: 18px; color: #FAFAFA;">1.8</span></div>
+          <div class="responsive-demo-cell">CO₂<br><span style="font-size: 18px; color: #FAFAFA;">820</span></div>
+        </div>
+
+        <div class="demo-label" style="margin-bottom: var(--sp-3);">3 items &rarr; 3x1 row (not 2x2 with empty cell)</div>
+        <div class="responsive-demo-grid" style="grid-template-columns: 1fr 1fr 1fr; max-width: 400px; margin-bottom: var(--sp-5);">
+          <div class="responsive-demo-cell">PPFD<br><span style="font-size: 18px; color: #FAFAFA;">285</span></div>
+          <div class="responsive-demo-cell">pH<br><span style="font-size: 18px; color: #FAFAFA;">6.2</span></div>
+          <div class="responsive-demo-cell">EC<br><span style="font-size: 18px; color: #FAFAFA;">1.8</span></div>
+        </div>
+
+        <div class="demo-label" style="margin-bottom: var(--sp-3); color: var(--red);">Anti-pattern: 3 items in 2x2 grid with empty cell</div>
+        <div class="responsive-demo-grid" style="grid-template-columns: 1fr 1fr; max-width: 400px; opacity: 0.5;">
+          <div class="responsive-demo-cell">PPFD<br><span style="font-size: 18px; color: #FAFAFA;">285</span></div>
+          <div class="responsive-demo-cell">pH<br><span style="font-size: 18px; color: #FAFAFA;">6.2</span></div>
+          <div class="responsive-demo-cell">EC<br><span style="font-size: 18px; color: #FAFAFA;">1.8</span></div>
+          <div class="responsive-demo-cell" style="border-style: dashed; color: var(--alu-dark); opacity: 0.4;">empty</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Adaptive Grid Demo</h3>
+      <p>Resize your browser or click buttons to see how the same content reflows across platforms.</p>
+      <div class="demo-panel">
+        <div style="display: flex; gap: var(--sp-2); margin-bottom: var(--sp-4);">
+          <button class="alu-btn-secondary" onclick="setGridLayout('phone')" style="font-size: 11px; padding: 6px 12px;">Phone</button>
+          <button class="alu-btn-secondary" onclick="setGridLayout('tablet')" style="font-size: 11px; padding: 6px 12px;">Tablet</button>
+          <button class="alu-btn-secondary" onclick="setGridLayout('desktop')" style="font-size: 11px; padding: 6px 12px;">Desktop</button>
+        </div>
+        <div class="responsive-demo-grid" id="adaptive-grid" style="grid-template-columns: 1fr;">
+          <div class="responsive-demo-cell glass-panel" style="padding: var(--sp-4);">
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: var(--sp-2);">Device Card</div>
+            <div style="font-size: 14px; color: #FAFAFA;">looper-dagze-1</div>
+          </div>
+          <div class="responsive-demo-cell glass-panel" style="padding: var(--sp-4);">
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: var(--sp-2);">Device Card</div>
+            <div style="font-size: 14px; color: #FAFAFA;">looper-onefifth-1</div>
+          </div>
+          <div class="responsive-demo-cell glass-panel" style="padding: var(--sp-4);">
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: var(--sp-2);">Device Card</div>
+            <div style="font-size: 14px; color: #FAFAFA;">ripple-dagze-1</div>
+          </div>
+          <div class="responsive-demo-cell glass-panel" style="padding: var(--sp-4);">
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--alu-dark); margin-bottom: var(--sp-2);">Device Card</div>
+            <div style="font-size: 14px; color: #FAFAFA;">looper-lhasa-1</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Platform Layout Patterns</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: start; font-size: 13px;">
+          <span style="color: var(--gold); font-weight: 600;">Phone</span>
+          <span class="alu-text-mid">Single column. Bottom tab bar (72px). Cards stack vertically. Bar gauges in sticky header. Safe area padding for notch (top: 54px) and home indicator (bottom: 34px).</span>
+          <span style="color: var(--gold); font-weight: 600;">Tablet portrait</span>
+          <span class="alu-text-mid">Single column with wider cards. Hamburger sidebar. 2-column metric grid. Device list remains single-column for scan readability.</span>
+          <span style="color: var(--gold); font-weight: 600;">Tablet landscape</span>
+          <span class="alu-text-mid">Persistent sidebar (260px). 2-column device cards. Master-detail: device list on left, detail on right. No bottom tab bar — sidebar replaces it.</span>
+          <span style="color: var(--gold); font-weight: 600;">Desktop</span>
+          <span class="alu-text-mid">Persistent sidebar (260px). 3-column device cards. Expanded charts (taller, more data points). Dashboard summary row above cards. Max content width: 960px.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         ACCESSIBILITY
+         ═══════════════════════════════════════════════════ -->
+    <section id="accessibility">
+      <div class="section-heading">Accessibility</div>
+      <h2>Accessibility</h2>
+      <p>Luce is dark-by-design — it models a cockpit environment. This requires extra care to meet WCAG 2.1 AA standards. The Ferrari Luce solved this physically: "every single switch feels different, so you don't need to look." In our digital adaptation, we solve it with contrast, touch targets, and focus indicators.</p>
+
+      <h3>Contrast Ratios</h3>
+      <p>All text on <code>--void</code> (#0C0E12) must meet WCAG AA (4.5:1 for body text, 3:1 for large text).</p>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: var(--sp-3);">
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #FAFAFA; font-size: 15px; font-weight: 600; min-width: 200px;">Headings #FAFAFA</span>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--green);">18.3:1 PASS</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #D4D4D8; font-size: 15px; font-weight: 500; min-width: 200px;">Primary #D4D4D8</span>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--green);">13.2:1 PASS</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #A1A1AA; font-size: 15px; font-weight: 500; min-width: 200px;">Secondary #A1A1AA</span>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--green);">7.3:1 PASS</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #8B8B93; font-size: 15px; font-weight: 500; min-width: 200px;">Tertiary #8B8B93</span>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--green);">5.0:1 PASS</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <span style="color: #71717A; font-size: 15px; font-weight: 500; min-width: 200px;">Muted #71717A</span>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--orange);">3.7:1 LARGE ONLY</span>
+          </div>
+        </div>
+        <div style="margin-top: var(--sp-4); font-size: 12px; color: var(--alu-dark);">
+          <code>--alu-muted</code> (#71717A) is restricted to decorative text, icons, and large text (18px+ bold or 24px+). Never use it for body text or critical labels.
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Touch Targets</h3>
+      <p>Every interactive element must meet minimum touch target sizes. Even small visual elements (status pills, filter chips) need adequate padding to reach the minimum.</p>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: auto auto 1fr; gap: var(--sp-2) var(--sp-4); align-items: center; font-size: 13px;">
+          <span style="color: var(--gold); font-weight: 600;">iOS</span>
+          <span class="mono" style="color: var(--alu-dark);">44 &times; 44 pt</span>
+          <span class="alu-text-mid">Apple HIG minimum. All tappable elements.</span>
+          <span style="color: var(--gold); font-weight: 600;">Android</span>
+          <span class="mono" style="color: var(--alu-dark);">48 &times; 48 dp</span>
+          <span class="alu-text-mid">Material Design minimum. Includes padding/margin.</span>
+          <span style="color: var(--gold); font-weight: 600;">Web</span>
+          <span class="mono" style="color: var(--alu-dark);">40 &times; 40 px</span>
+          <span class="alu-text-mid">WCAG 2.5.8 Target Size. Clickable elements on touch-capable devices.</span>
+        </div>
+        <div style="margin-top: var(--sp-4); display: flex; align-items: center; gap: var(--sp-4);">
+          <div style="width: 44px; height: 44px; border: 1px dashed var(--gold); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: var(--font-mono); font-size: 9px; color: var(--gold);">44pt</span>
+          </div>
+          <span style="font-size: 12px; color: var(--alu-dark);">Minimum touch area — visual element can be smaller but tap area must reach this size via padding.</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Reduced Motion</h3>
+      <p>Users who enable <code>prefers-reduced-motion</code> get instant transitions with no spring animations. All <code>transition</code> and <code>animation</code> properties must respect this.</p>
+      <div class="code-block">
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        <pre><code>@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         FOCUS STATES
+         ═══════════════════════════════════════════════════ -->
+    <section id="focus-states">
+      <div class="section-heading">Keyboard &amp; Focus</div>
+      <h2>Focus States</h2>
+      <p>Web users navigate with Tab, arrow keys, and Enter. Every interactive element needs a visible focus indicator that doesn't break the Luce aesthetic. We use a gold focus ring — the same gold that indicates "active" throughout the system.</p>
+
+      <h3>Focus Ring</h3>
+      <p>2px gold outline with 2px offset. Applied via <code>:focus-visible</code> so it only shows for keyboard navigation, not mouse clicks.</p>
+      <div class="demo-panel">
+        <div class="demo-description">Tab through these elements to see the focus ring.</div>
+        <div class="demo-row" style="gap: var(--sp-4);">
+          <button class="alu-btn-primary focus-demo-item" tabindex="0">Primary</button>
+          <button class="alu-btn-secondary focus-demo-item" tabindex="0">Secondary</button>
+          <button class="alu-btn-danger focus-demo-item" tabindex="0">Danger</button>
+          <button class="alu-btn-icon focus-demo-item" tabindex="0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Glass Panel Focus</h3>
+      <p>Glass panels use an inset box-shadow instead of outline (outline clips on border-radius). Gold inner glow.</p>
+      <div class="demo-panel">
+        <div class="demo-row" style="gap: var(--sp-4);">
+          <div class="glass-panel focus-demo-item focus-glass" tabindex="0" style="padding: var(--sp-4); min-width: 140px; cursor: pointer;">
+            <div style="font-size: 12px; color: var(--alu-mid);">Tappable card</div>
+          </div>
+          <div class="glass-panel focus-demo-item focus-glass" tabindex="0" style="padding: var(--sp-4); min-width: 140px; cursor: pointer;">
+            <div style="font-size: 12px; color: var(--alu-mid);">Another card</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-block" style="margin-top: var(--sp-4);">
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        <pre><code>/* Standard focus ring */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Glass panel focus (rounded corners) */
+.glass-panel:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--gold),
+              0 0 0 4px rgba(245, 166, 35, 0.2);
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         LOADING & EMPTY STATES
+         ═══════════════════════════════════════════════════ -->
+    <section id="loading-states">
+      <div class="section-heading">States</div>
+      <h2>Loading &amp; Empty States</h2>
+      <p>Real apps spend ~40% of their time in non-ideal states. Loading, empty, error, and offline states must look designed — not blank or broken. In the Luce metaphor, a loading screen is like the instrument cluster warming up when you insert the glass key.</p>
+
+      <h3>Skeleton Screen</h3>
+      <p>Void-to-raised shimmer animation. Matches the shape of the content it replaces.</p>
+      <div class="demo-panel">
+        <div class="demo-row" style="gap: var(--sp-6);">
+          <!-- Skeleton device card -->
+          <div class="glass-panel" style="padding: var(--sp-4); width: 200px;">
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-text" style="width: 80%;"></div>
+            <div class="skeleton skeleton-text" style="width: 50%;"></div>
+            <div style="display: flex; gap: var(--sp-3); margin-top: var(--sp-3);">
+              <div class="skeleton" style="height: 12px; width: 40px;"></div>
+              <div class="skeleton" style="height: 12px; width: 40px;"></div>
+              <div class="skeleton" style="height: 12px; width: 40px;"></div>
+            </div>
+          </div>
+          <!-- Skeleton bar gauges -->
+          <div style="display: flex; gap: var(--sp-4); align-items: flex-end;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+              <div class="skeleton" style="height: 16px; width: 40px;"></div>
+              <div class="skeleton skeleton-bar"></div>
+              <div class="skeleton" style="height: 10px; width: 30px;"></div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+              <div class="skeleton" style="height: 16px; width: 40px;"></div>
+              <div class="skeleton skeleton-bar" style="height: 140px; width: 10px;"></div>
+              <div class="skeleton" style="height: 10px; width: 30px;"></div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+              <div class="skeleton" style="height: 16px; width: 40px;"></div>
+              <div class="skeleton skeleton-bar"></div>
+              <div class="skeleton" style="height: 10px; width: 30px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Spinner</h3>
+      <p>Gold arc spinning on void. Used for inline loading indicators where skeleton shapes aren't practical.</p>
+      <div class="demo-panel">
+        <div class="demo-row centered" style="gap: var(--sp-6);">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div class="luce-spinner"></div>
+            <span style="font-size: 11px; color: var(--alu-dark);">24px default</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div class="luce-spinner" style="width: 16px; height: 16px;"></div>
+            <span style="font-size: 11px; color: var(--alu-dark);">16px inline</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+            <div class="luce-spinner" style="width: 40px; height: 40px; border-width: 3px;"></div>
+            <span style="font-size: 11px; color: var(--alu-dark);">40px page-level</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Empty State</h3>
+      <p>When there's no data, show a glass panel with a muted icon and actionable message.</p>
+      <div class="demo-panel">
+        <div class="glass-panel" style="padding: var(--sp-8); text-align: center; max-width: 320px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--alu-dark)" stroke-width="1" stroke-linecap="round" style="margin-bottom: var(--sp-3); opacity: 0.5;"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <div style="font-size: 14px; font-weight: 500; color: var(--alu-mid); margin-bottom: var(--sp-2);">No devices found</div>
+          <div style="font-size: 12px; color: var(--alu-dark); margin-bottom: var(--sp-4);">Connect a device to your network to get started.</div>
+          <button class="alu-btn-primary" style="font-size: 12px; padding: 8px 16px;">Add Device</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Error State</h3>
+      <div class="demo-panel">
+        <div class="glass-panel" style="padding: var(--sp-4); border-left: 3px solid var(--red); max-width: 320px;">
+          <div style="display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-2);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--red)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12" stroke="var(--void)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="var(--void)"/></svg>
+            <span style="font-size: 13px; font-weight: 600; color: var(--red);">Connection failed</span>
+          </div>
+          <div style="font-size: 12px; color: var(--alu-mid); margin-bottom: var(--sp-3);">Unable to reach looper-dagze-1. Check network connection.</div>
+          <button class="alu-btn-secondary" style="font-size: 12px; padding: 6px 12px;">Retry</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         ELEVATION & LAYERING
+         ═══════════════════════════════════════════════════ -->
+    <section id="elevation">
+      <div class="section-heading">Depth</div>
+      <h2>Elevation &amp; Layering</h2>
+      <p>Luce uses a 5-level elevation stack. Each level adds visual density (darker background, more opacity, heavier shadow). Glass-on-glass nesting increases glass opacity per level so nested panels remain distinguishable.</p>
+
+      <h3>Elevation Scale</h3>
+      <div class="demo-panel">
+        <div style="display: flex; flex-direction: column; gap: var(--sp-4);">
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <div style="width: 120px; height: 48px; background: var(--void); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">z-0</span>
+            </div>
+            <div style="font-size: 13px;"><span style="color: var(--alu-light); font-weight: 500;">Base</span> <span class="alu-text-mid">— void background, screen content</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <div style="width: 120px; height: 48px; background: var(--void-raised); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">z-1</span>
+            </div>
+            <div style="font-size: 13px;"><span style="color: var(--alu-light); font-weight: 500;">Raised</span> <span class="alu-text-mid">— cards, glass panels, charts</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <div class="glass-panel" style="width: 120px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06);">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">z-2</span>
+            </div>
+            <div style="font-size: 13px;"><span style="color: var(--alu-light); font-weight: 500;">Sticky</span> <span class="alu-text-mid">— sticky headers, tab bars, bar gauge row</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <div style="width: 120px; height: 48px; background: rgba(12, 14, 18, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; box-shadow: 0 -4px 16px rgba(0,0,0,0.3);">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">z-3</span>
+            </div>
+            <div style="font-size: 13px;"><span style="color: var(--alu-light); font-weight: 500;">Overlay</span> <span class="alu-text-mid">— modals, bottom sheets, dropdowns</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--sp-4);">
+            <div style="width: 120px; height: 48px; background: var(--void-surface); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--alu-dark);">z-4</span>
+            </div>
+            <div style="font-size: 13px;"><span style="color: var(--alu-light); font-weight: 500;">Toast</span> <span class="alu-text-mid">— toasts, tooltips, top-level alerts</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: var(--sp-6);">Glass Nesting</h3>
+      <p>When a glass panel sits inside another glass panel, increase the inner panel's background opacity by 2% per level. This prevents the layers from merging into visual mud.</p>
+      <div class="demo-panel">
+        <div class="glass-panel" style="padding: var(--sp-4);">
+          <div style="font-size: 11px; color: var(--alu-dark); margin-bottom: var(--sp-3);">Level 1 — <code>rgba(255,255,255, 0.04)</code></div>
+          <div class="glass-panel" style="padding: var(--sp-4); background: rgba(255,255,255, 0.06);">
+            <div style="font-size: 11px; color: var(--alu-dark); margin-bottom: var(--sp-3);">Level 2 — <code>rgba(255,255,255, 0.06)</code></div>
+            <div class="glass-panel" style="padding: var(--sp-4); background: rgba(255,255,255, 0.08);">
+              <div style="font-size: 11px; color: var(--alu-dark);">Level 3 — <code>rgba(255,255,255, 0.08)</code></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: var(--sp-3); font-size: 12px; color: var(--alu-dark);">
+          Rule: <code>bg opacity = 0.04 + (0.02 × nesting depth)</code>. Max 3 levels. If you need more, flatten your hierarchy.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         THEMES
+         ═══════════════════════════════════════════════════ -->
+    <section id="themes">
+      <div class="section-heading">Appearance</div>
+      <h2>Themes</h2>
+      <p>Luce ships two themes. <strong>Dark</strong> is the default — designed for monitoring environments (control rooms, greenhouses) where dark UI reduces eye strain and makes data stand out. <strong>Light</strong> is for general-purpose contexts (office use, documentation, reports).</p>
+
+      <h3>Side-by-Side Comparison</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4);">
+          <!-- Dark theme card -->
+          <div style="border-radius: var(--radius-md); padding: var(--sp-5); background: #0C0E12; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;">
+            <div style="font-size: 14px; font-weight: 600; color: #FAFAFA; margin-bottom: var(--sp-3);">Dark (Luce)</div>
+            <div style="display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3);">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #0C0E12; border: 1px solid rgba(128,128,128,0.2);" title="void"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #12151B; border: 1px solid rgba(128,128,128,0.2);" title="void-raised"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #181B23; border: 1px solid rgba(128,128,128,0.2);" title="void-surface"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #F5A623; border: 1px solid rgba(128,128,128,0.2);" title="gold accent"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #D4D4D8; border: 1px solid rgba(128,128,128,0.2);" title="alu-light text"></div>
+            </div>
+            <div style="font-size: 12px; color: #A1A1AA; line-height: 1.5;">
+              Void/Glass/Aluminum materials. Gold accent. Glass blur panels. Designed for monitoring environments where dark UI reduces eye strain.
+            </div>
+            <!-- Mini metric demo -->
+            <div style="margin-top: var(--sp-3); padding: var(--sp-3); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+              <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A;">Temperature</div>
+              <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: #34D399;">24.3°C</div>
+            </div>
+          </div>
+          <!-- Light theme card -->
+          <div style="border-radius: var(--radius-md); padding: var(--sp-5); background: #FAFAFA; border: 1px solid #E4E4E7; overflow: hidden;">
+            <div style="font-size: 14px; font-weight: 600; color: #18181B; margin-bottom: var(--sp-3);">Light</div>
+            <div style="display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3);">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #FAFAFA; border: 1px solid rgba(128,128,128,0.2);" title="background"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #F4F4F5; border: 1px solid rgba(128,128,128,0.2);" title="backgroundSubtle"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; border: 1px solid rgba(128,128,128,0.2);" title="card"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #0D9488; border: 1px solid rgba(128,128,128,0.2);" title="teal accent"></div>
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: #18181B; border: 1px solid rgba(128,128,128,0.2);" title="text"></div>
+            </div>
+            <div style="font-size: 12px; color: #71717A; line-height: 1.5;">
+              Solid white surfaces. Teal accent instead of gold. No glass blur. Clean Apple-inspired aesthetic for general-purpose contexts.
+            </div>
+            <!-- Mini metric demo -->
+            <div style="margin-top: var(--sp-3); padding: var(--sp-3); background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px;">
+              <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A1A1AA;">Temperature</div>
+              <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: #22C55E;">24.3°C</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Token Mapping</h3>
+      <p>Both themes reuse the same CSS custom property names. This means all component CSS works unchanged — only the token values differ.</p>
+      <div class="demo-panel">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--glass-border); color: var(--alu-mid); font-weight: 500;">Token</th>
+              <th style="text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--glass-border); color: var(--alu-mid); font-weight: 500;">Dark (Luce)</th>
+              <th style="text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--glass-border); color: var(--alu-mid); font-weight: 500;">Light</th>
+            </tr>
+          </thead>
+          <tbody style="font-family: var(--font-mono); font-size: 12px;">
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--void</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#0C0E12</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#FAFAFA</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--void-raised</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#12151B</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#F4F4F5</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--glass-bg</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">rgba(255,255,255,0.04)</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">rgba(0,0,0,0.03)</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--glass-border</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">rgba(255,255,255,0.08)</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#E4E4E7</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--alu-light</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#D4D4D8</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#18181B</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--gold (accent)</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#F5A623</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#0D9488 (teal)</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--green</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#34D399</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#22C55E</td></tr>
+            <tr><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-light);">--red</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#F87171</td><td style="padding: var(--sp-2) var(--sp-3); color: var(--alu-mid);">#EF4444</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Implementation</h3>
+      <p>Theme switching uses <code>[data-theme="light"]</code> on the root <code>&lt;html&gt;</code> element. All token overrides live in <code>tokens.css</code>. Toggle via JavaScript:</p>
+      <div class="demo-panel">
+        <pre style="margin: 0; overflow-x: auto;"><code style="font-family: var(--font-mono); font-size: 12px; color: var(--alu-light); line-height: 1.6;">// Toggle theme
+const html = document.documentElement;
+const isDark = html.getAttribute('data-theme') !== 'light';
+html.setAttribute('data-theme', isDark ? 'light' : '');
+localStorage.setItem('luce-theme', isDark ? 'light' : 'dark');
+
+// Restore on page load
+const saved = localStorage.getItem('luce-theme');
+if (saved === 'light') {
+  document.documentElement.setAttribute('data-theme', 'light');
+}</code></pre>
+      </div>
+
+      <h3>When to Use Each Theme</h3>
+      <div class="demo-panel">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4);">
+          <div>
+            <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--sp-2);">Dark (Default)</div>
+            <ul style="font-size: 13px; color: var(--alu-mid); line-height: 1.8; padding-left: var(--sp-5); margin: 0;">
+              <li>Greenhouse control rooms</li>
+              <li>Real-time monitoring dashboards</li>
+              <li>Night-time / low-light operation</li>
+              <li>Environments where data visibility is critical</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: var(--sp-2);">Light</div>
+            <ul style="font-size: 13px; color: var(--alu-mid); line-height: 1.8; padding-left: var(--sp-5); margin: 0;">
+              <li>Office / desk use</li>
+              <li>Bright ambient lighting</li>
+              <li>Documentation and reports</li>
+              <li>Users who prefer light interfaces</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/nav.js"></script>
+<script>
+/* ─── Copy to clipboard ─── */
+function copyValue(value) {
+  navigator.clipboard.writeText(value).then(function () {
+    showToast('Copied ' + value);
+  });
+}
+
+function copyCode(btn) {
+  var code = btn.parentElement.querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(function () {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  setTimeout(function () { toast.classList.remove('visible'); }, 1500);
+}
+
+/* ─── Motion demo ─── */
+function animateMotionDemo() {
+  var dots = document.querySelectorAll('#motion-demo .motion-dot');
+  dots.forEach(function (dot) {
+    var dur = dot.getAttribute('data-duration');
+    var rail = dot.parentElement;
+    var maxX = rail.offsetWidth - 16;
+
+    dot.style.transition = 'none';
+    dot.style.left = '0px';
+    void dot.offsetWidth;
+
+    dot.style.transition = 'left ' + dur + 'ms cubic-bezier(0.16, 1, 0.3, 1)';
+    dot.style.left = maxX + 'px';
+
+    setTimeout(function () {
+      dot.style.transition = 'left ' + dur + 'ms cubic-bezier(0.16, 1, 0.3, 1)';
+      dot.style.left = '0px';
+    }, parseInt(dur) + 400);
+  });
+}
+
+/* ─── Tab bar demo ─── */
+function switchDemoTab(el, barId) {
+  var bar = document.getElementById(barId);
+  bar.querySelectorAll('.tab-item').forEach(function (t) { t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+/* ─── Manettino ─── */
+function switchManettino(el) {
+  var parent = el.closest('.alu-manettino');
+  parent.querySelectorAll('.segment').forEach(function (s) { s.classList.remove('active'); });
+  el.classList.add('active');
+  updateManettinoSlider(parent);
+}
+
+function updateManettinoSlider(manettino) {
+  var slider = manettino.querySelector('.slider-bg');
+  var segments = manettino.querySelectorAll('.segment');
+  var activeIdx = -1;
+  segments.forEach(function (seg, i) { if (seg.classList.contains('active')) activeIdx = i; });
+  if (activeIdx < 0) return;
+  var segRect = segments[activeIdx].getBoundingClientRect();
+  var parentRect = manettino.getBoundingClientRect();
+  slider.style.left = (segRect.left - parentRect.left) + 'px';
+  slider.style.width = segRect.width + 'px';
+}
+
+/* ─── Toggle ─── */
+function toggleSwitch(el, labelId) {
+  el.classList.toggle('on');
+  if (labelId) {
+    var label = document.getElementById(labelId);
+    if (label) label.textContent = el.classList.contains('on') ? 'AUTO' : 'MANUAL';
+  }
+}
+
+/* ─── Button bar ─── */
+function switchBtnBar(el) {
+  el.parentElement.querySelectorAll('.btn').forEach(function (b) { b.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+/* ─── Rifle-bolt click ─── */
+function rifleBoltClick(btn) {
+  btn.classList.remove('rifle-bolt-click');
+  void btn.offsetWidth;
+  btn.classList.add('rifle-bolt-click');
+  setTimeout(function () { btn.classList.remove('rifle-bolt-click'); }, 200);
+}
+
+/* ─── Slide transition ─── */
+var slideState = 'a';
+function playSlideTransition(dir) {
+  var panelA = document.getElementById('slide-panel-a');
+  var panelB = document.getElementById('slide-panel-b');
+
+  var showing = slideState === 'a' ? panelA : panelB;
+  var entering = slideState === 'a' ? panelB : panelA;
+
+  var forward = dir === 'forward';
+
+  // Exit current
+  showing.style.transition = 'opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1)';
+  showing.style.opacity = '0';
+  showing.style.transform = forward ? 'translateX(-30px)' : 'translateX(30px)';
+
+  // Prepare entering
+  entering.style.transition = 'none';
+  entering.style.opacity = '0';
+  entering.style.transform = forward ? 'translateX(30px)' : 'translateX(-30px)';
+  entering.classList.remove('slide-out', 'slide-in-ready');
+  void entering.offsetWidth;
+
+  // Animate in
+  entering.style.transition = 'opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1)';
+  entering.style.opacity = '1';
+  entering.style.transform = 'translateX(0)';
+
+  slideState = slideState === 'a' ? 'b' : 'a';
+}
+
+/* ─── Fade transition ─── */
+var fadeState = 'a';
+function playFadeTransition() {
+  var panelA = document.getElementById('fade-panel-a');
+  var panelB = document.getElementById('fade-panel-b');
+
+  var showing = fadeState === 'a' ? panelA : panelB;
+  var entering = fadeState === 'a' ? panelB : panelA;
+
+  // Exit
+  showing.style.transition = 'opacity 200ms ease, transform 200ms ease';
+  showing.style.opacity = '0';
+  showing.style.transform = 'translateY(8px)';
+
+  // Prepare
+  entering.style.transition = 'none';
+  entering.style.opacity = '0';
+  entering.style.transform = 'translateY(8px)';
+  entering.classList.remove('fade-out', 'fade-in-ready');
+  void entering.offsetWidth;
+
+  // Enter (slightly delayed)
+  setTimeout(function () {
+    entering.style.transition = 'opacity 200ms ease, transform 200ms ease';
+    entering.style.opacity = '1';
+    entering.style.transform = 'translateY(0)';
+  }, 100);
+
+  fadeState = fadeState === 'a' ? 'b' : 'a';
+}
+
+/* ─── Bar gauge animation ─── */
+function animateBarGauges() {
+  var fills = document.querySelectorAll('.demo-bar-fill');
+  fills.forEach(function (fill, i) {
+    var target = fill.getAttribute('data-target');
+    fill.style.transition = 'none';
+    fill.style.height = '0%';
+    void fill.offsetWidth;
+    setTimeout(function () {
+      fill.style.transition = 'height 1s cubic-bezier(0.16, 1, 0.3, 1)';
+      fill.style.height = target + '%';
+    }, i * 100);
+  });
+}
+
+/* ─── Horizontal bar animation ─── */
+function animateHBars() {
+  var fills = document.querySelectorAll('.demo-hbar');
+  fills.forEach(function (fill, i) {
+    var target = fill.getAttribute('data-target');
+    fill.style.transition = 'none';
+    fill.style.width = '0%';
+    void fill.offsetWidth;
+    setTimeout(function () {
+      fill.style.transition = 'width 600ms cubic-bezier(0.16, 1, 0.3, 1)';
+      fill.style.width = target + '%';
+    }, i * 80);
+  });
+}
+
+/* ─── Responsive grid demo ─── */
+function setGridLayout(mode) {
+  var grid = document.getElementById('adaptive-grid');
+  switch (mode) {
+    case 'phone':   grid.style.gridTemplateColumns = '1fr'; break;
+    case 'tablet':  grid.style.gridTemplateColumns = '1fr 1fr'; break;
+    case 'desktop': grid.style.gridTemplateColumns = '1fr 1fr 1fr'; break;
+  }
+}
+
+/* ─── Line chart generation ─── */
+function generateLineChart() {
+  var pts1 = [], pts2 = [], areaPts = [];
+  for (var i = 0; i < 50; i++) {
+    var x = (i / 49) * 400;
+    var y1 = 80 + Math.sin(i * 0.15) * 25 + Math.sin(i * 0.4) * 10 + (Math.random() - 0.5) * 8;
+    var y2 = 60 + Math.sin(i * 0.12 + 1) * 20 + Math.sin(i * 0.35 + 2) * 12 + (Math.random() - 0.5) * 6;
+    y1 = Math.max(10, Math.min(145, y1));
+    y2 = Math.max(10, Math.min(145, y2));
+    pts1.push(x.toFixed(1) + ',' + y1.toFixed(1));
+    pts2.push(x.toFixed(1) + ',' + y2.toFixed(1));
+    areaPts.push(x.toFixed(1) + ',' + y1.toFixed(1));
+  }
+  document.getElementById('chart-main-line').setAttribute('points', pts1.join(' '));
+  document.getElementById('chart-second-line').setAttribute('points', pts2.join(' '));
+
+  // Area fill path
+  var areaPath = 'M' + areaPts[0];
+  for (var j = 1; j < areaPts.length; j++) areaPath += ' L' + areaPts[j];
+  areaPath += ' L400,160 L0,160 Z';
+  document.getElementById('chart-area-fill').setAttribute('d', areaPath);
+}
+
+/* ─── Sparklines ─── */
+function generateDemoSparklines() {
+  document.querySelectorAll('.demo-spark').forEach(function (line, idx) {
+    var points = [];
+    for (var i = 0; i < 24; i++) {
+      var x = (i / 23) * 80;
+      var y = 10 + Math.sin(i * 0.5 + idx * 2) * 6 + (Math.random() - 0.5) * 4;
+      points.push(x.toFixed(1) + ',' + y.toFixed(1));
+    }
+    line.setAttribute('points', points.join(' '));
+  });
+}
+
+/* ─── Init all on load ─── */
+window.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.alu-manettino').forEach(function (m) {
+    requestAnimationFrame(function () { updateManettinoSlider(m); });
+  });
+  setTimeout(animateBarGauges, 500);
+  setTimeout(animateHBars, 800);
+  generateLineChart();
+  generateDemoSparklines();
+});
+
+window.addEventListener('resize', function () {
+  document.querySelectorAll('.alu-manettino').forEach(function (m) { updateManettinoSlider(m); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luce — Lumina Design Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/docs.css">
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <nav class="docs-sidebar">
+    <a href="index.html" class="sidebar-brand">Luce</a>
+    <div class="sidebar-tagline">Design Guidelines</div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Sections</div>
+      <a href="foundations.html" class="sidebar-link">Foundations</a>
+      <a href="components.html" class="sidebar-link">Components</a>
+      <a href="patterns.html" class="sidebar-link">Patterns</a>
+      <a href="brand.html" class="sidebar-link">Brand</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Resources</div>
+      <a href="tokens.json" class="sidebar-link">tokens.json</a>
+      <a href="css/tokens.css" class="sidebar-link">tokens.css</a>
+    </div>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="docs-main">
+    <div class="landing-hero">
+      <div class="landing-title">Luce</div>
+      <div class="landing-subtitle">Lumina Design Language</div>
+
+      <!-- Three Material Swatches -->
+      <div class="landing-materials">
+        <div class="material-swatch">
+          <div class="material-circle" style="background: var(--void); box-shadow: inset 0 0 20px rgba(0,0,0,0.5);"></div>
+          <span class="material-label">Void</span>
+        </div>
+        <div class="material-swatch">
+          <div class="material-circle glass-panel" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"></div>
+          <span class="material-label">Glass</span>
+        </div>
+        <div class="material-swatch">
+          <div class="material-circle" style="background: linear-gradient(145deg, #52525B 0%, #3F3F46 50%, #27272A 100%); border-color: rgba(255,255,255,0.1);"></div>
+          <span class="material-label">Aluminum</span>
+        </div>
+      </div>
+
+      <!-- Section Cards -->
+      <div class="landing-cards">
+        <a href="foundations.html" class="glass-panel landing-card">
+          <h3>Foundations</h3>
+          <p>Materials, colors, typography, spacing, motion, and radius tokens.</p>
+        </a>
+        <a href="components.html" class="glass-panel landing-card">
+          <h3>Components</h3>
+          <p>Interactive demos for all 20 Luce UI components with code.</p>
+        </a>
+        <a href="patterns.html" class="glass-panel landing-card">
+          <h3>Patterns</h3>
+          <p>Layout patterns, animation choreography, and usage guidelines.</p>
+        </a>
+        <a href="brand.html" class="glass-panel landing-card">
+          <h3>Brand</h3>
+          <p>Name, heritage, voice guidelines, and iconography specs.</p>
+        </a>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

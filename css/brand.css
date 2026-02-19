@@ -1,0 +1,258 @@
+/* Luce Brand — Logo grid, voice cards, theme comparison, mission typography */
+
+/* ─── Mission Statement ─── */
+
+.mission-statement {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--alu-light);
+  max-width: 600px;
+  margin-bottom: var(--sp-6);
+}
+
+.mission-statement em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ─── Logo Grid ─── */
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+@media (max-width: 640px) {
+  .logo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-8) var(--sp-6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.logo-card.dark-bg {
+  background: var(--void);
+}
+
+.logo-card.light-bg {
+  background: #FAFAFA;
+}
+
+.logo-card img {
+  max-width: 200px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.logo-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--alu-dark);
+  margin-top: var(--sp-3);
+}
+
+/* Clear space visualization */
+.clear-space-demo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-8);
+  border-radius: var(--radius-md);
+  background: var(--void);
+  border: 1px solid var(--glass-border);
+}
+
+.clear-space-demo img {
+  max-width: 160px;
+}
+
+.clear-space-demo::before,
+.clear-space-demo::after {
+  content: '';
+  position: absolute;
+  border: 1px dashed rgba(245, 166, 35, 0.3);
+}
+
+.clear-space-demo::before {
+  top: var(--sp-4);
+  bottom: var(--sp-4);
+  left: var(--sp-4);
+  right: var(--sp-4);
+  border-radius: var(--radius-sm);
+}
+
+.clear-space-badge {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  background: var(--void-raised);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ─── Theme Comparison ─── */
+
+.theme-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+@media (max-width: 640px) {
+  .theme-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theme-compare-card {
+  border-radius: var(--radius-md);
+  padding: var(--sp-5);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+
+.theme-compare-card.dark {
+  background: #0C0E12;
+  color: #D4D4D8;
+}
+
+.theme-compare-card.light {
+  background: #FAFAFA;
+  color: #18181B;
+  border-color: #E4E4E7;
+}
+
+.theme-compare-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: var(--sp-3);
+}
+
+.theme-compare-card.dark .theme-compare-title { color: #FAFAFA; }
+.theme-compare-card.light .theme-compare-title { color: #18181B; }
+
+.theme-swatch-row {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.theme-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(128,128,128,0.2);
+}
+
+/* ─── Voice Examples ─── */
+
+.voice-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+.voice-card {
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--void-raised);
+  border: 1px solid var(--glass-border);
+}
+
+.voice-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--alu-dark);
+  margin-bottom: var(--sp-2);
+}
+
+.voice-card-text {
+  font-size: 14px;
+  color: var(--alu-light);
+  font-family: var(--font-mono);
+}
+
+.voice-card-text.body {
+  font-family: var(--font-sans);
+  color: var(--alu-mid);
+}
+
+/* ─── Inspiration Card ─── */
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+@media (max-width: 640px) {
+  .inspiration-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inspiration-card {
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--void-raised);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.inspiration-icon {
+  font-size: 28px;
+  margin-bottom: var(--sp-2);
+  opacity: 0.5;
+}
+
+.inspiration-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--alu-light);
+  margin-bottom: var(--sp-1);
+}
+
+.inspiration-desc {
+  font-size: 12px;
+  color: var(--alu-dark);
+  line-height: 1.4;
+}
+
+/* ─── Do/Don't (reused from patterns) ─── */
+
+.brand-do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+
+@media (max-width: 640px) {
+  .brand-do-dont {
+    grid-template-columns: 1fr;
+  }
+}

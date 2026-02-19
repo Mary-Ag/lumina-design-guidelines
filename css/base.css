@@ -1,0 +1,155 @@
+/* Reset & Base — Luce design language */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  background: var(--void);
+  font-family: var(--font-sans);
+  color: var(--alu-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ─── Typography ─── */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #FAFAFA;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+h1 { font-size: 36px; }
+h2 { font-size: 24px; margin-bottom: var(--sp-4); }
+h3 { font-size: 18px; margin-bottom: var(--sp-3); }
+h4 { font-size: 15px; margin-bottom: var(--sp-2); }
+
+p {
+  margin-bottom: var(--sp-4);
+  color: var(--alu-mid);
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: opacity var(--dur-fast) ease;
+}
+
+a:hover { opacity: 0.8; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--glass-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--glass-border);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  background: var(--void-raised);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  overflow-x: auto;
+  margin-bottom: var(--sp-4);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ─── Material Utilities ─── */
+
+.void-bg        { background: var(--void); }
+.void-raised-bg { background: var(--void-raised); }
+.void-surface-bg { background: var(--void-surface); }
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--glass-highlight) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.alu-text       { color: var(--alu-light); }
+.alu-text-mid   { color: var(--alu-mid); }
+.alu-text-dim   { color: var(--alu-dark); }
+
+.alu-surface {
+  background: var(--alu-surface);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─── Semantic Colors ─── */
+
+.text-gold   { color: var(--gold); }
+.text-green  { color: var(--green); }
+.text-orange { color: var(--orange); }
+.text-red    { color: var(--red); }
+.text-blue   { color: var(--blue); }
+.text-purple { color: var(--purple); }
+
+.bg-gold-dim   { background: var(--gold-dim); }
+.bg-green-dim  { background: var(--green-dim); }
+.bg-orange-dim { background: var(--orange-dim); }
+.bg-red-dim    { background: var(--red-dim); }
+.bg-blue-dim   { background: var(--blue-dim); }
+.bg-purple-dim { background: var(--purple-dim); }
+
+/* ─── Spacing Utilities ─── */
+
+.gap-sm  { gap: var(--sp-2); }
+.gap-md  { gap: var(--sp-4); }
+.gap-lg  { gap: var(--sp-6); }
+.mb-sm   { margin-bottom: var(--sp-2); }
+.mb-md   { margin-bottom: var(--sp-4); }
+.mb-lg   { margin-bottom: var(--sp-6); }
+
+/* ─── Layout Helpers ─── */
+
+.flex        { display: flex; }
+.flex-col    { flex-direction: column; }
+.flex-wrap   { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+
+/* ─── Section Label ─── */
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--alu-dark);
+  margin-bottom: var(--sp-3);
+}
+
+/* ─── Mono Value ─── */
+
+.mono {
+  font-family: var(--font-mono);
+}

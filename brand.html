@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand — Luce Design Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/docs.css">
+<link rel="stylesheet" href="css/patterns.css">
+<link rel="stylesheet" href="css/brand.css">
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <nav class="docs-sidebar">
+    <a href="index.html" class="sidebar-brand">Luce</a>
+    <div class="sidebar-tagline">Design Guidelines</div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Brand</div>
+      <a href="#luminaos-luce" class="sidebar-sub-link">LuminaOS &amp; Luce</a>
+      <a href="#mission" class="sidebar-sub-link">Mission</a>
+      <a href="#inspiration" class="sidebar-sub-link">Design Inspiration</a>
+      <a href="#themes" class="sidebar-sub-link">Two Themes</a>
+      <a href="#voice" class="sidebar-sub-link">Voice &amp; Tone</a>
+      <a href="#logo" class="sidebar-sub-link">Logo Usage</a>
+      <a href="#brand-dos-donts" class="sidebar-sub-link">Do's &amp; Don'ts</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Pages</div>
+      <a href="index.html" class="sidebar-link">Home</a>
+      <a href="foundations.html" class="sidebar-link">Foundations</a>
+      <a href="components.html" class="sidebar-link">Components</a>
+      <a href="patterns.html" class="sidebar-link">Patterns</a>
+      <a href="brand.html" class="sidebar-link active">Brand</a>
+    </div>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="docs-main">
+
+    <div class="page-header">
+      <h1>Brand</h1>
+      <p>LuminaOS identity, the Luce design language, voice guidelines, and logo specifications.</p>
+    </div>
+
+    <!-- 1. LuminaOS & Luce -->
+    <section id="luminaos-luce">
+      <h2>LuminaOS &amp; Luce</h2>
+
+      <div class="mission-statement">
+        <em>Luce</em> — Italian for "light" — is the design language of LuminaOS, a precision agriculture control platform for vertical farms and greenhouses.
+      </div>
+
+      <p>The name carries a deliberate irony: a dark UI named after light. In LuminaOS, light is information — every colored pixel is a signal emerging from the void. In a greenhouse, light is literally the primary control variable: PPFD levels, photoperiod schedules, spectral composition. The name reflects both the design philosophy (dark canvas where data shines) and the domain (light-driven agriculture).</p>
+
+      <div class="demo-panel" style="text-align:center">
+        <div style="font-size:48px;font-weight:700;color:var(--gold);margin-bottom:var(--sp-2)">Luce</div>
+        <div style="font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--alu-dark);margin-bottom:var(--sp-4)">Lumina Design Language</div>
+        <div style="font-size:13px;color:var(--alu-mid);max-width:400px;margin:0 auto;line-height:1.6">
+          A dark canvas where data shines. Color carries meaning. Every pixel earns its place.
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mission & Audience -->
+    <section id="mission">
+      <h2>Mission &amp; Audience</h2>
+
+      <p>LuminaOS serves <strong>growers, agronomists, and facility operators</strong> who need instrument-grade precision in their controls. The UI must communicate complex environmental data — temperature, humidity, VPD, CO2, light spectra, pH, EC — clearly and instantly, like reading a cockpit instrument panel.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;flex-direction:column;gap:var(--sp-4)">
+          <div style="display:flex;gap:var(--sp-4);align-items:baseline">
+            <span style="font-family:var(--font-mono);font-size:11px;color:var(--alu-dark);min-width:100px">GROWERS</span>
+            <span style="font-size:13px;color:var(--alu-mid)">Daily operators monitoring crops and adjusting environmental setpoints</span>
+          </div>
+          <div style="display:flex;gap:var(--sp-4);align-items:baseline">
+            <span style="font-family:var(--font-mono);font-size:11px;color:var(--alu-dark);min-width:100px">AGRONOMISTS</span>
+            <span style="font-size:13px;color:var(--alu-mid)">Technical specialists designing growth programs and analyzing yield data</span>
+          </div>
+          <div style="display:flex;gap:var(--sp-4);align-items:baseline">
+            <span style="font-family:var(--font-mono);font-size:11px;color:var(--alu-dark);min-width:100px">OPERATORS</span>
+            <span style="font-size:13px;color:var(--alu-mid)">Facility managers overseeing multiple chambers with fleet-level dashboards</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Design Priorities</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Glanceability</strong> — critical data visible in under 2 seconds</li>
+        <li><strong>Precision</strong> — monospace values, units always shown, no rounding ambiguity</li>
+        <li><strong>Status clarity</strong> — green/orange/red system immediately communicates health</li>
+        <li><strong>Low eye strain</strong> — dark theme for control room and greenhouse monitoring</li>
+      </ul>
+    </section>
+
+    <!-- 3. Design Inspiration -->
+    <section id="inspiration">
+      <h2>Design Inspiration</h2>
+
+      <p>The three-materials metaphor (Void / Glass / Aluminum) draws from automotive instrument design, particularly the Ferrari Luce EV interior by Jony Ive / LoveFrom. This is <em>inspiration, not imitation</em> — LuminaOS adapts these principles for precision agriculture, not luxury cars.</p>
+
+      <div class="inspiration-grid">
+        <div class="inspiration-card">
+          <div class="inspiration-icon">&#9679;</div>
+          <div class="inspiration-label">Void = Darkness</div>
+          <div class="inspiration-desc">Instrument panel black. Data emerges from absence of light.</div>
+        </div>
+        <div class="inspiration-card">
+          <div class="inspiration-icon">&#9674;</div>
+          <div class="inspiration-label">Glass = Depth</div>
+          <div class="inspiration-desc">Translucent layers create spatial hierarchy without opacity.</div>
+        </div>
+        <div class="inspiration-card">
+          <div class="inspiration-icon">&#9673;</div>
+          <div class="inspiration-label">Aluminum = Touch</div>
+          <div class="inspiration-desc">Machined metal feel for interactive controls. Detent precision.</div>
+        </div>
+      </div>
+
+      <h3>Translation to Digital</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Spring easing</strong> = physical detent feel of a machined dial</li>
+        <li><strong>Gold accent</strong> = precision engineering indicator (active state, not decoration)</li>
+        <li><strong>Void background</strong> = instrument panel darkness for maximum data contrast</li>
+        <li><strong>Backdrop blur</strong> = glass layers suggesting physical depth between surfaces</li>
+      </ul>
+    </section>
+
+    <!-- 4. Two Themes -->
+    <section id="themes">
+      <h2>Two Themes</h2>
+
+      <p>Luce ships with two themes. Same components, same tokens, different personality.</p>
+
+      <div class="theme-compare-grid">
+        <div class="theme-compare-card dark">
+          <div class="theme-compare-title">Dark (Luce)</div>
+          <div class="theme-swatch-row">
+            <div class="theme-swatch" style="background:#0C0E12"></div>
+            <div class="theme-swatch" style="background:#181B23"></div>
+            <div class="theme-swatch" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.2)"></div>
+            <div class="theme-swatch" style="background:#F5A623"></div>
+            <div class="theme-swatch" style="background:#34D399"></div>
+            <div class="theme-swatch" style="background:#F87171"></div>
+          </div>
+          <div style="font-size:12px;color:#A1A1AA;line-height:1.5">
+            The default. Void/Glass/Aluminum materials, gold accent, glass blur panels. Designed for monitoring environments — control rooms and greenhouses — where dark UI reduces eye strain and makes data stand out.
+          </div>
+        </div>
+        <div class="theme-compare-card light">
+          <div class="theme-compare-title">Light</div>
+          <div class="theme-swatch-row">
+            <div class="theme-swatch" style="background:#FAFAFA"></div>
+            <div class="theme-swatch" style="background:#FFFFFF;border-color:#E4E4E7"></div>
+            <div class="theme-swatch" style="background:#F4F4F5;border-color:#E4E4E7"></div>
+            <div class="theme-swatch" style="background:#0D9488"></div>
+            <div class="theme-swatch" style="background:#22C55E"></div>
+            <div class="theme-swatch" style="background:#EF4444"></div>
+          </div>
+          <div style="font-size:12px;color:#52525B;line-height:1.5">
+            Clean white/teal aesthetic for general-purpose contexts — office use, documentation, reports. Solid surfaces (no glass blur), teal primary accent instead of gold. Same component structure, inverted token values.
+          </div>
+        </div>
+      </div>
+
+      <h3>Implementation</h3>
+      <p>Light theme is activated via <code style="font-size:12px">[data-theme="light"]</code> on the <code style="font-size:12px">&lt;html&gt;</code> element. The same CSS custom property names are reused, so all component CSS works unchanged. See <a href="css/tokens.css" style="color:var(--gold)">tokens.css</a> for the full token mapping.</p>
+
+      <h3>When to Use Each</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Dark</strong>: Real-time monitoring, greenhouse control rooms, night shifts, immersive dashboards</li>
+        <li><strong>Light</strong>: Office environments, printed reports, documentation, daytime casual use</li>
+        <li>Let the user choose — never force a theme based on ambient light or time of day</li>
+      </ul>
+    </section>
+
+    <!-- 5. Voice & Tone -->
+    <section id="voice">
+      <h2>Voice &amp; Tone</h2>
+
+      <p>Technical, precise, confident, understated. LuminaOS speaks like a well-calibrated instrument — it reports facts, not feelings.</p>
+
+      <div class="voice-examples">
+        <div class="voice-card">
+          <div class="voice-card-label">Status Messages</div>
+          <div class="voice-card-text">pH 6.2 — Target: 6.0</div>
+          <div style="font-size:11px;color:var(--alu-dark);margin-top:var(--sp-2)">Terse. Value + context. No "Your pH is currently..."</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-label">Error Messages</div>
+          <div class="voice-card-text">Sensor offline. Check connection.</div>
+          <div style="font-size:11px;color:var(--alu-dark);margin-top:var(--sp-2)">Direct. Problem + action. No "Oops!" or "Something went wrong."</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-label">AI Recommendations</div>
+          <div class="voice-card-text">VPD trending high. Consider reducing 1–2°C.</div>
+          <div style="font-size:11px;color:var(--alu-dark);margin-top:var(--sp-2)">Measured. Observation + suggestion. Never imperative ("You must...").</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-label">Empty States</div>
+          <div class="voice-card-text body">No devices found. Add a device to get started.</div>
+          <div style="font-size:11px;color:var(--alu-dark);margin-top:var(--sp-2)">Neutral. State + next step. No "It's lonely in here!" or emoji.</div>
+        </div>
+      </div>
+
+      <h3>Writing Rules</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Always use units</strong> — 24.2°C, not 24.2. 420 µmol, not 420.</li>
+        <li><strong>Monospace for data</strong> — all values in JetBrains Mono</li>
+        <li><strong>Uppercase labels</strong> — section headers, form labels, column headers</li>
+        <li><strong>No emoji</strong> — ever. Not in status, not in errors, not in success messages.</li>
+        <li><strong>No casual language</strong> — no "Great!", "Awesome!", "Oops!", "Hang tight!"</li>
+        <li><strong>Abbreviations OK</strong> — Temp, RH, PPFD, VPD, EC. Users know them.</li>
+      </ul>
+    </section>
+
+    <!-- 6. Logo Usage -->
+    <section id="logo">
+      <h2>Logo Usage</h2>
+
+      <p>Four logo assets for different contexts. White wordmark and clear icon for dark backgrounds, black wordmark and solid icon for light backgrounds.</p>
+
+      <div class="logo-grid">
+        <div class="logo-card dark-bg">
+          <img src="assets/logo-white.png" alt="LuminaOS logo white">
+          <span class="logo-card-label">White Wordmark</span>
+        </div>
+        <div class="logo-card light-bg">
+          <img src="assets/logo-black.png" alt="LuminaOS logo black">
+          <span class="logo-card-label">Black Wordmark</span>
+        </div>
+        <div class="logo-card dark-bg">
+          <img src="assets/app-icon-clear.png" alt="App icon clear" style="max-width:64px;max-height:64px;border-radius:14px">
+          <span class="logo-card-label">Clear Icon</span>
+        </div>
+        <div class="logo-card light-bg">
+          <img src="assets/app-icon-solid.png" alt="App icon solid" style="max-width:64px;max-height:64px;border-radius:14px">
+          <span class="logo-card-label">Solid Icon</span>
+        </div>
+      </div>
+
+      <h3>Size Minimums</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Icon</strong>: 32px minimum (app icon at smallest launcher size)</li>
+        <li><strong>Wordmark</strong>: 120px minimum width (legibility threshold)</li>
+        <li><strong>Clear space</strong>: 1x the height of the logo on all sides</li>
+      </ul>
+
+      <h3>Theme Context</h3>
+      <ul style="font-size:13px;color:var(--alu-mid);line-height:1.8">
+        <li><strong>Dark theme</strong>: white wordmark, clear icon</li>
+        <li><strong>Light theme</strong>: black wordmark, solid icon</li>
+        <li>Never place a white logo on a light background or vice versa</li>
+      </ul>
+    </section>
+
+    <!-- 7. Do's and Don'ts -->
+    <section id="brand-dos-donts">
+      <h2>Do's and Don'ts</h2>
+
+      <div class="brand-do-dont">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Use correct logo for theme
+          </div>
+          <div class="do-panel-content">
+            White wordmark on dark, black wordmark on light. Match the icon variant (clear/solid) to the background.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Mismatched logo/background
+          </div>
+          <div class="dont-panel-content">
+            Never place the white logo on white or light gray. Never place the black logo on dark backgrounds. Always maintain high contrast.
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-do-dont">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Technical voice
+          </div>
+          <div class="do-panel-content">
+            "Sensor offline. Check connection." Direct, factual, actionable. Let the data speak.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Casual voice
+          </div>
+          <div class="dont-panel-content">
+            "Oops! Looks like your sensor took a nap. Give it a nudge?" No whimsy, no anthropomorphization, no emoji.
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-do-dont">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Gold/teal = active state
+          </div>
+          <div class="do-panel-content">
+            Primary accent indicates the active, selected, or primary action element. It carries meaning: "this is where your attention should be."
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Gold/teal as decoration
+          </div>
+          <div class="dont-panel-content">
+            Never use the primary accent for borders, backgrounds, or visual flair. If everything is gold, nothing is.
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-do-dont">
+        <div class="do-panel">
+          <div class="do-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Respect theme boundaries
+          </div>
+          <div class="do-panel-content">
+            Use the three-materials metaphor (Void/Glass/Aluminum) in dark mode. Use solid surfaces in light mode. Each theme has its own visual language.
+          </div>
+        </div>
+        <div class="dont-panel">
+          <div class="dont-panel-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Mix theme elements
+          </div>
+          <div class="dont-panel-content">
+            Don't use glass blur in light mode or solid white cards in dark mode. Each theme is internally consistent — mixing creates visual confusion.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

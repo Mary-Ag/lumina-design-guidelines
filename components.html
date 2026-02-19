@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Components — Luce Design Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/docs.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+
+<div class="docs-layout">
+
+  <!-- Sidebar -->
+  <nav class="docs-sidebar">
+    <a href="index.html" class="sidebar-brand">Luce</a>
+    <div class="sidebar-tagline">Design Guidelines</div>
+
+    <button class="theme-toggle">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span class="theme-label">Light mode</span>
+    </button>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Aluminum</div>
+      <a href="#aluminum-slider" class="sidebar-sub-link">AluminumSlider</a>
+      <a href="#aluminum-toggle" class="sidebar-sub-link">AluminumToggle</a>
+      <a href="#segmented-control" class="sidebar-sub-link">SegmentedControl</a>
+      <a href="#button-bar" class="sidebar-sub-link">ButtonBar</a>
+      <a href="#aluminum-radio" class="sidebar-sub-link">AluminumRadio</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Glass</div>
+      <a href="#glass-panel" class="sidebar-sub-link">GlassPanel</a>
+      <a href="#metric-card" class="sidebar-sub-link">MetricCard</a>
+      <a href="#device-card" class="sidebar-sub-link">DeviceCard</a>
+      <a href="#status-pill" class="sidebar-sub-link">StatusPill</a>
+      <a href="#bar-gauge" class="sidebar-sub-link">VerticalBarGauge</a>
+      <a href="#led-channels" class="sidebar-sub-link">LEDChannel</a>
+      <a href="#relay-pill" class="sidebar-sub-link">RelayPill</a>
+      <a href="#hardware-status" class="sidebar-sub-link">HardwareStatusRow</a>
+      <a href="#phase-card" class="sidebar-sub-link">PhaseCard</a>
+      <a href="#activity-event" class="sidebar-sub-link">ActivityEvent</a>
+      <a href="#ai-insight" class="sidebar-sub-link">AIInsightCard</a>
+      <a href="#fertigation-pair" class="sidebar-sub-link">FertigationPair</a>
+      <a href="#day-counter" class="sidebar-sub-link">DayCounter</a>
+      <a href="#record-card" class="sidebar-sub-link">RecordCard</a>
+      <a href="#login-button" class="sidebar-sub-link">LoginButton</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Pages</div>
+      <a href="index.html" class="sidebar-link">Home</a>
+      <a href="foundations.html" class="sidebar-link">Foundations</a>
+      <a href="components.html" class="sidebar-link active">Components</a>
+      <a href="patterns.html" class="sidebar-link">Patterns</a>
+      <a href="brand.html" class="sidebar-link">Brand</a>
+    </div>
+  </nav>
+
+  <!-- Hamburger -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="docs-main">
+
+    <div class="page-header">
+      <h1>Components</h1>
+      <p>20 Luce UI components organized by material — Aluminum for interactive controls, Glass for containers and display. Toggle the theme to preview dark and light modes.</p>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         ALUMINUM COMPONENTS
+         ════════════════════════════════════════════════════ -->
+
+    <div class="section-heading">Aluminum Controls</div>
+
+    <!-- 1. AluminumSlider -->
+    <section id="aluminum-slider" class="component-section">
+      <h2>AluminumSlider</h2>
+      <p>Range input with machined aluminum thumb, gold active-state ring. Used for continuous value selection — PPFD intensity, temperature setpoints, fan speed percentages.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;flex-direction:column;gap:var(--sp-6);max-width:360px">
+          <div class="alu-slider-wrap">
+            <div class="alu-slider-header">
+              <span class="alu-slider-label">PPFD</span>
+              <span class="alu-slider-value" data-unit=" µmol">350 µmol</span>
+            </div>
+            <input type="range" class="alu-slider" min="0" max="600" value="350">
+          </div>
+          <div class="alu-slider-wrap">
+            <div class="alu-slider-header">
+              <span class="alu-slider-label">Temperature</span>
+              <span class="alu-slider-value" data-unit="°C">24°C</span>
+            </div>
+            <input type="range" class="alu-slider" min="18" max="30" value="24">
+          </div>
+        </div>
+      </div>
+
+      <h3>Properties</h3>
+      <table class="props-table">
+        <thead><tr><th>Attribute</th><th>Values</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>min</code></td><td>Number</td><td>Minimum value</td></tr>
+          <tr><td><code>max</code></td><td>Number</td><td>Maximum value</td></tr>
+          <tr><td><code>value</code></td><td>Number</td><td>Current value</td></tr>
+          <tr><td><code>data-unit</code></td><td>String</td><td>Unit suffix for display (on <code>.alu-slider-value</code>)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="alu-slider-wrap"&gt;
+  &lt;div class="alu-slider-header"&gt;
+    &lt;span class="alu-slider-label"&gt;PPFD&lt;/span&gt;
+    &lt;span class="alu-slider-value" data-unit=" µmol"&gt;350 µmol&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;input type="range" class="alu-slider" min="0" max="600" value="350"&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 2. AluminumToggle -->
+    <section id="aluminum-toggle" class="component-section">
+      <h2>AluminumToggle</h2>
+      <p>Switch control with aluminum thumb and gold track when active. Spring easing on the thumb transition gives a mechanical detent feel. Used for binary on/off controls.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;flex-direction:column;gap:var(--sp-4);max-width:280px">
+          <div class="alu-toggle-wrap">
+            <span class="alu-toggle-label">Auto Climate</span>
+            <div class="alu-toggle on"><div class="thumb"></div></div>
+          </div>
+          <div class="alu-toggle-wrap">
+            <span class="alu-toggle-label">Night Mode</span>
+            <div class="alu-toggle"><div class="thumb"></div></div>
+          </div>
+          <div class="alu-toggle-wrap">
+            <span class="alu-toggle-label">Locked</span>
+            <div class="alu-toggle disabled"><div class="thumb"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.on</code></td><td>Active state — gold track, thumb slides right</td></tr>
+          <tr><td><code>.disabled</code></td><td>Non-interactive — 40% opacity</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="alu-toggle-wrap"&gt;
+  &lt;span class="alu-toggle-label"&gt;Auto Climate&lt;/span&gt;
+  &lt;div class="alu-toggle on"&gt;&lt;div class="thumb"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 3. SegmentedControl (Manettino) -->
+    <section id="segmented-control" class="component-section">
+      <h2>SegmentedControl</h2>
+      <p>Multi-option selector with sliding gold highlight. Named "Manettino" after the Ferrari steering wheel dial. Aluminum surface with spring-animated indicator. Used for view switching and mode selection.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5);max-width:400px">
+          <div class="demo-label">3 Segments</div>
+          <div class="alu-manettino">
+            <div class="slider-bg"></div>
+            <div class="segment active">Monitor</div>
+            <div class="segment">Controls</div>
+            <div class="segment">Program</div>
+          </div>
+
+          <div class="demo-label">4 Segments</div>
+          <div class="alu-manettino">
+            <div class="slider-bg"></div>
+            <div class="segment active">1H</div>
+            <div class="segment">6H</div>
+            <div class="segment">24H</div>
+            <div class="segment">7D</div>
+          </div>
+
+          <div class="demo-label">5 Segments</div>
+          <div class="alu-manettino">
+            <div class="slider-bg"></div>
+            <div class="segment active">Mon</div>
+            <div class="segment">Ctrl</div>
+            <div class="segment">Prog</div>
+            <div class="segment">HW</div>
+            <div class="segment">Log</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Properties</h3>
+      <table class="props-table">
+        <thead><tr><th>Element</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.slider-bg</code></td><td>Sliding gold highlight (positioned via JS)</td></tr>
+          <tr><td><code>.segment</code></td><td>Individual option — add <code>.active</code> for current</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="alu-manettino"&gt;
+  &lt;div class="slider-bg"&gt;&lt;/div&gt;
+  &lt;div class="segment active"&gt;Monitor&lt;/div&gt;
+  &lt;div class="segment"&gt;Controls&lt;/div&gt;
+  &lt;div class="segment"&gt;Program&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 4. AluminumButtonBar -->
+    <section id="button-bar" class="component-section">
+      <h2>AluminumButtonBar</h2>
+      <p>Discrete multi-option bar for stepped values. Gold highlight on active option. Used for fan speed (OFF/LOW/MED/HIGH/MAX) and similar stepped controls.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:360px">
+          <div class="demo-label">Fan Speed</div>
+          <div class="alu-btn-bar">
+            <div class="btn">Off</div>
+            <div class="btn">Low</div>
+            <div class="btn active">Med</div>
+            <div class="btn">High</div>
+            <div class="btn">Max</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Properties</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.btn</code></td><td>Individual option</td></tr>
+          <tr><td><code>.btn.active</code></td><td>Currently selected — gold background</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="alu-btn-bar"&gt;
+  &lt;div class="btn"&gt;Off&lt;/div&gt;
+  &lt;div class="btn active"&gt;Med&lt;/div&gt;
+  &lt;div class="btn"&gt;High&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 5. AluminumRadio -->
+    <section id="aluminum-radio" class="component-section">
+      <h2>AluminumRadio</h2>
+      <p>Radio button group with aluminum dot border and gold fill animation. Scale spring on selection. Used for exclusive single-choice settings.</p>
+
+      <div class="demo-panel">
+        <div class="alu-radio-group">
+          <div class="alu-radio active">
+            <div class="radio-dot"></div>
+            <span>Celsius</span>
+          </div>
+          <div class="alu-radio">
+            <div class="radio-dot"></div>
+            <span>Fahrenheit</span>
+          </div>
+          <div class="alu-radio">
+            <div class="radio-dot"></div>
+            <span>Kelvin</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Properties</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.alu-radio-group</code></td><td>Container — add <code>.vertical</code> for column layout</td></tr>
+          <tr><td><code>.alu-radio.active</code></td><td>Selected option — gold dot and border</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="alu-radio-group"&gt;
+  &lt;div class="alu-radio active"&gt;
+    &lt;div class="radio-dot"&gt;&lt;/div&gt;
+    &lt;span&gt;Celsius&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="alu-radio"&gt;
+    &lt;div class="radio-dot"&gt;&lt;/div&gt;
+    &lt;span&gt;Fahrenheit&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         GLASS COMPONENTS
+         ════════════════════════════════════════════════════ -->
+
+    <div class="section-heading">Glass Containers &amp; Display</div>
+
+    <!-- 6. GlassPanel -->
+    <section id="glass-panel" class="component-section">
+      <h2>GlassPanel</h2>
+      <p>The universal Luce container. Translucent background with backdrop blur, subtle border, and top-edge highlight gradient. Supports nesting at +2% opacity per depth level (max 3).</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;gap:var(--sp-4);flex-wrap:wrap">
+          <div class="glass-panel" style="padding:var(--sp-5);min-width:160px">
+            <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--alu-dark);margin-bottom:var(--sp-2)">Depth 1</div>
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-mid)">4% opacity</div>
+          </div>
+          <div class="glass-panel depth-2" style="padding:var(--sp-5);min-width:160px">
+            <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--alu-dark);margin-bottom:var(--sp-2)">Depth 2</div>
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-mid)">6% opacity</div>
+          </div>
+          <div class="glass-panel depth-3" style="padding:var(--sp-5);min-width:160px">
+            <div style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--alu-dark);margin-bottom:var(--sp-2)">Depth 3</div>
+            <div style="font-family:var(--font-mono);font-size:13px;color:var(--alu-mid)">8% opacity</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.glass-panel</code></td><td>Base — 4% white bg, 20px blur, 8% border</td></tr>
+          <tr><td><code>.depth-2</code></td><td>Nested — 6% white bg</td></tr>
+          <tr><td><code>.depth-3</code></td><td>Deep nested — 8% white bg (max depth)</td></tr>
+          <tr><td><code>.hoverable</code></td><td>Hover state — bg increases on hover</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="glass-panel"&gt;
+  &lt;!-- Content at depth 1 --&gt;
+  &lt;div class="glass-panel depth-2"&gt;
+    &lt;!-- Nested content at depth 2 --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 7. MetricCard -->
+    <section id="metric-card" class="component-section">
+      <h2>MetricCard</h2>
+      <p>Glass panel displaying a single sensor reading — uppercase label, monospace value, optional sparkline. Expandable variant reveals a full chart on tap. Used in the 2-column readings grid.</p>
+
+      <div class="demo-panel">
+        <div class="readings-grid" style="max-width:400px">
+          <div class="glass-panel metric-card expandable">
+            <div class="metric-card-header">
+              <div>
+                <div class="label">Temperature</div>
+                <div class="value">24.2<span class="unit">°C</span></div>
+              </div>
+            </div>
+            <svg class="sparkline" width="100" height="24" viewBox="0 0 100 24">
+              <polyline stroke="var(--green)" points="0,18 10,14 20,16 30,10 40,12 50,8 60,10 70,6 80,8 90,7 100,6"/>
+            </svg>
+            <div class="chart-expand">
+              <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <polyline fill="none" stroke="var(--green)" stroke-width="2" points="0,50 20,42 40,45 60,30 80,35 100,20 120,25 140,15 160,18 180,12 200,10"/>
+              </svg>
+            </div>
+          </div>
+          <div class="glass-panel metric-card expandable">
+            <div class="metric-card-header">
+              <div>
+                <div class="label">Humidity</div>
+                <div class="value">68<span class="unit">%</span></div>
+              </div>
+            </div>
+            <svg class="sparkline" width="100" height="24" viewBox="0 0 100 24">
+              <polyline stroke="var(--blue)" points="0,12 10,14 20,10 30,16 40,14 50,18 60,16 70,20 80,18 90,19 100,17"/>
+            </svg>
+            <div class="chart-expand">
+              <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <polyline fill="none" stroke="var(--blue)" stroke-width="2" points="0,30 20,35 40,25 60,40 80,35 100,45 120,40 140,50 160,45 180,48 200,42"/>
+              </svg>
+            </div>
+          </div>
+          <div class="glass-panel metric-card">
+            <div class="label">PPFD</div>
+            <div class="value">420<span class="unit"> µmol</span></div>
+            <svg class="sparkline" width="100" height="24" viewBox="0 0 100 24">
+              <polyline stroke="var(--gold)" points="0,20 10,18 20,12 30,10 40,8 50,6 60,6 70,6 80,8 90,14 100,20"/>
+            </svg>
+          </div>
+          <div class="glass-panel metric-card">
+            <div class="label">VPD</div>
+            <div class="value">1.12<span class="unit"> kPa</span></div>
+            <svg class="sparkline" width="100" height="24" viewBox="0 0 100 24">
+              <polyline stroke="var(--orange)" points="0,14 10,12 20,14 30,10 40,8 50,10 60,12 70,10 80,8 90,10 100,12"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.metric-card</code></td><td>Base — label, value, optional sparkline</td></tr>
+          <tr><td><code>.expandable</code></td><td>Tap to expand chart area</td></tr>
+          <tr><td><code>.expanded</code></td><td>Expanded state (set by JS)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="readings-grid"&gt;
+  &lt;div class="glass-panel metric-card expandable"&gt;
+    &lt;div class="metric-card-header"&gt;
+      &lt;div&gt;
+        &lt;div class="label"&gt;Temperature&lt;/div&gt;
+        &lt;div class="value"&gt;24.2&lt;span class="unit"&gt;°C&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;svg class="sparkline" width="100" height="24"&gt;...&lt;/svg&gt;
+    &lt;div class="chart-expand"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 8. DeviceCard -->
+    <section id="device-card" class="component-section">
+      <h2>DeviceCard</h2>
+      <p>Glass panel representing a single device in the fleet view. Shows device name, ID, crop, status pill, and key metrics. Press-scale animation on tap for drill-down navigation.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:400px">
+          <div class="glass-panel device-card">
+            <div class="device-card-header">
+              <div>
+                <div class="device-name">Dagze Chamber 1</div>
+                <div class="device-id">looper-dagze-1</div>
+              </div>
+              <span class="status-pill healthy"><span class="dot"></span> Healthy</span>
+            </div>
+            <div class="device-crop">Lettuce — Butterhead</div>
+            <div class="device-metrics">
+              <div class="device-metric"><span class="dm-label">Temp</span><span class="dm-value">24.2°C</span></div>
+              <div class="device-metric"><span class="dm-label">RH</span><span class="dm-value">68%</span></div>
+              <div class="device-metric"><span class="dm-label">PPFD</span><span class="dm-value">420</span></div>
+            </div>
+          </div>
+          <div class="glass-panel device-card">
+            <div class="device-card-header">
+              <div>
+                <div class="device-name">Dagze Chamber 2</div>
+                <div class="device-id">looper-dagze-2</div>
+              </div>
+              <span class="status-pill warning"><span class="dot"></span> Warning</span>
+            </div>
+            <div class="device-crop">Basil — Sweet</div>
+            <div class="device-metrics">
+              <div class="device-metric"><span class="dm-label">Temp</span><span class="dm-value">28.1°C</span></div>
+              <div class="device-metric"><span class="dm-label">RH</span><span class="dm-value">82%</span></div>
+              <div class="device-metric"><span class="dm-label">PPFD</span><span class="dm-value">380</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="glass-panel device-card"&gt;
+  &lt;div class="device-card-header"&gt;
+    &lt;div&gt;
+      &lt;div class="device-name"&gt;Dagze Chamber 1&lt;/div&gt;
+      &lt;div class="device-id"&gt;looper-dagze-1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class="status-pill healthy"&gt;
+      &lt;span class="dot"&gt;&lt;/span&gt; Healthy
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="device-crop"&gt;Lettuce — Butterhead&lt;/div&gt;
+  &lt;div class="device-metrics"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 9. StatusPill -->
+    <section id="status-pill" class="component-section">
+      <h2>StatusPill</h2>
+      <p>Inline status indicator with colored dot and label. 7 semantic variants. Critical variant pulses the dot. Used throughout the app for device health, connection state, and alert severity.</p>
+
+      <div class="demo-panel">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sp-3)">
+          <span class="status-pill healthy"><span class="dot"></span> Healthy</span>
+          <span class="status-pill warning"><span class="dot"></span> Warning</span>
+          <span class="status-pill critical"><span class="dot"></span> Critical</span>
+          <span class="status-pill connected"><span class="dot"></span> Connected</span>
+          <span class="status-pill offline"><span class="dot"></span> Offline</span>
+          <span class="status-pill info"><span class="dot"></span> Info</span>
+          <span class="status-pill ai"><span class="dot"></span> AI Insight</span>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Color</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>.healthy</code></td><td>Green</td><td>Normal operation</td></tr>
+          <tr><td><code>.warning</code></td><td>Orange</td><td>Attention needed</td></tr>
+          <tr><td><code>.critical</code></td><td>Red (pulses)</td><td>Immediate action required</td></tr>
+          <tr><td><code>.connected</code></td><td>Green</td><td>Device online</td></tr>
+          <tr><td><code>.offline</code></td><td>Red</td><td>Device unreachable</td></tr>
+          <tr><td><code>.info</code></td><td>Blue</td><td>Informational state</td></tr>
+          <tr><td><code>.ai</code></td><td>Purple</td><td>AI-generated insight</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;span class="status-pill healthy"&gt;
+  &lt;span class="dot"&gt;&lt;/span&gt; Healthy
+&lt;/span&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 10. VerticalBarGauge -->
+    <section id="bar-gauge" class="component-section">
+      <h2>VerticalBarGauge</h2>
+      <p>Vertical bar with animated fill. Used for primary sensor readings at the top of the device monitor screen. Supports standard and large sizes, with staggered entry animation (100ms per bar).</p>
+
+      <div class="demo-panel">
+        <div class="bars-row">
+          <div class="bar-gauge">
+            <div class="bar-value">24.2</div>
+            <div class="bar-track"><div class="bar-fill color-green" data-height="75%" style="height:0%"></div></div>
+            <div class="bar-label">Temp</div>
+          </div>
+          <div class="bar-gauge">
+            <div class="bar-value">68</div>
+            <div class="bar-track"><div class="bar-fill color-blue" data-height="68%" style="height:0%"></div></div>
+            <div class="bar-label">RH</div>
+          </div>
+          <div class="bar-gauge large">
+            <div class="bar-value">420</div>
+            <div class="bar-track"><div class="bar-fill color-gold" data-height="70%" style="height:0%"></div></div>
+            <div class="bar-label">PPFD</div>
+          </div>
+          <div class="bar-gauge">
+            <div class="bar-value">1.12</div>
+            <div class="bar-track"><div class="bar-fill color-green" data-height="56%" style="height:0%"></div></div>
+            <div class="bar-label">VPD</div>
+          </div>
+        </div>
+        <button class="demo-replay">Replay animation</button>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.bar-gauge</code></td><td>Standard size (100px tall, 8px wide)</td></tr>
+          <tr><td><code>.bar-gauge.large</code></td><td>Large size (140px tall, 10px wide)</td></tr>
+          <tr><td><code>.color-green</code></td><td>Green fill with glow</td></tr>
+          <tr><td><code>.color-gold</code></td><td>Gold fill with glow</td></tr>
+          <tr><td><code>.color-blue</code></td><td>Blue fill with glow</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="bars-row"&gt;
+  &lt;div class="bar-gauge"&gt;
+    &lt;div class="bar-value"&gt;24.2&lt;/div&gt;
+    &lt;div class="bar-track"&gt;
+      &lt;div class="bar-fill color-green" style="height:75%"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="bar-label"&gt;Temp&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 11. LEDChannel -->
+    <section id="led-channels" class="component-section">
+      <h2>LEDChannel</h2>
+      <p>Horizontal bar showing LED channel intensity. Color matches the actual light wavelength. Used in the hardware screen to display light spectrum configuration.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:400px">
+          <div class="led-channel">
+            <span class="led-label">Red</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="85%" style="width:0%;background:#EF4444"></div></div>
+            <span class="led-val"><span class="led-pct">85%</span></span>
+          </div>
+          <div class="led-channel">
+            <span class="led-label">Green</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="42%" style="width:0%;background:#22C55E"></div></div>
+            <span class="led-val"><span class="led-pct">42%</span></span>
+          </div>
+          <div class="led-channel">
+            <span class="led-label">Blue</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="60%" style="width:0%;background:#3B82F6"></div></div>
+            <span class="led-val"><span class="led-pct">60%</span></span>
+          </div>
+          <div class="led-channel">
+            <span class="led-label">White</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="100%" style="width:0%;background:#D4D4D8"></div></div>
+            <span class="led-val"><span class="led-pct">100%</span></span>
+          </div>
+          <div class="led-channel">
+            <span class="led-label">UV</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="30%" style="width:0%;background:#A78BFA"></div></div>
+            <span class="led-val"><span class="led-pct">30%</span></span>
+          </div>
+          <div class="led-channel">
+            <span class="led-label">IR</span>
+            <div class="led-bar-track"><div class="led-bar-fill" data-width="15%" style="width:0%;background:#F87171"></div></div>
+            <span class="led-val"><span class="led-pct">15%</span></span>
+          </div>
+        </div>
+        <button class="demo-replay">Replay animation</button>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="led-channel"&gt;
+  &lt;span class="led-label"&gt;Red&lt;/span&gt;
+  &lt;div class="led-bar-track"&gt;
+    &lt;div class="led-bar-fill" style="width:85%;background:#EF4444"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class="led-val"&gt;&lt;span class="led-pct"&gt;85%&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 12. RelayPill -->
+    <section id="relay-pill" class="component-section">
+      <h2>RelayPill</h2>
+      <p>Small pill showing relay state — green for on, muted for off. Used in the hardware screen to display relay board status. Click to toggle in this demo.</p>
+
+      <div class="demo-panel">
+        <div class="relay-grid">
+          <div class="relay-pill on">Pump 1</div>
+          <div class="relay-pill on">Pump 2</div>
+          <div class="relay-pill on">Valve A</div>
+          <div class="relay-pill on">Fan</div>
+          <div class="relay-pill off">Heater</div>
+          <div class="relay-pill off">UV Lamp</div>
+          <div class="relay-pill off">Valve B</div>
+          <div class="relay-pill off">Spare</div>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.on</code></td><td>Active — green background and text</td></tr>
+          <tr><td><code>.off</code></td><td>Inactive — muted background</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="relay-grid"&gt;
+  &lt;div class="relay-pill on"&gt;Pump 1&lt;/div&gt;
+  &lt;div class="relay-pill off"&gt;Heater&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 13. HardwareStatusRow -->
+    <section id="hardware-status" class="component-section">
+      <h2>HardwareStatusRow</h2>
+      <p>Key-value row for displaying hardware readings. Monospace values right-aligned, unit suffix in muted tone. Used in the hardware diagnostic screen.</p>
+
+      <div class="demo-panel">
+        <div class="glass-panel" style="padding:var(--sp-4);max-width:400px">
+          <div class="hw-section-title">AHU Status</div>
+          <div class="hw-status-row">
+            <span class="hw-key">Compressor</span>
+            <span class="hw-val">42 <span class="hw-unit">rps</span></span>
+          </div>
+          <div class="hw-status-row">
+            <span class="hw-key">Supply Air</span>
+            <span class="hw-val">18.4 <span class="hw-unit">°C</span></span>
+          </div>
+          <div class="hw-status-row">
+            <span class="hw-key">Return Air</span>
+            <span class="hw-val">24.1 <span class="hw-unit">°C</span></span>
+          </div>
+          <div class="hw-status-row">
+            <span class="hw-key">Coil Temp</span>
+            <span class="hw-val">6.2 <span class="hw-unit">°C</span></span>
+          </div>
+          <div class="hw-status-row">
+            <span class="hw-key">Fan RPM</span>
+            <span class="hw-val">1240 <span class="hw-unit">rpm</span></span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="hw-section-title"&gt;AHU Status&lt;/div&gt;
+&lt;div class="hw-status-row"&gt;
+  &lt;span class="hw-key"&gt;Compressor&lt;/span&gt;
+  &lt;span class="hw-val"&gt;42 &lt;span class="hw-unit"&gt;rps&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 14. PhaseCard -->
+    <section id="phase-card" class="component-section">
+      <h2>PhaseCard</h2>
+      <p>Timeline card for growth program phases. Current phase highlighted with gold left border and gold badge. Shows phase duration and environment targets. Used in the program/instruction screen.</p>
+
+      <div class="demo-panel">
+        <div class="phase-timeline" style="max-width:400px">
+          <div class="glass-panel phase-card">
+            <div class="phase-badge">1</div>
+            <div class="phase-info">
+              <div class="phase-name">Germination</div>
+              <div class="phase-days">Days 1–5</div>
+              <div class="phase-targets">
+                <span class="phase-target">Temp <span class="pt-val">22°C</span></span>
+                <span class="phase-target">RH <span class="pt-val">85%</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel phase-card current">
+            <div class="phase-badge">2</div>
+            <div class="phase-info">
+              <div class="phase-name">Seedling</div>
+              <div class="phase-days">Days 6–14</div>
+              <div class="phase-targets">
+                <span class="phase-target">Temp <span class="pt-val">24°C</span></span>
+                <span class="phase-target">RH <span class="pt-val">75%</span></span>
+                <span class="phase-target">PPFD <span class="pt-val">250</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel phase-card">
+            <div class="phase-badge">3</div>
+            <div class="phase-info">
+              <div class="phase-name">Vegetative</div>
+              <div class="phase-days">Days 15–28</div>
+              <div class="phase-targets">
+                <span class="phase-target">Temp <span class="pt-val">25°C</span></span>
+                <span class="phase-target">PPFD <span class="pt-val">400</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel phase-card">
+            <div class="phase-badge">4</div>
+            <div class="phase-info">
+              <div class="phase-name">Harvest</div>
+              <div class="phase-days">Days 29–35</div>
+              <div class="phase-targets">
+                <span class="phase-target">Temp <span class="pt-val">20°C</span></span>
+                <span class="phase-target">PPFD <span class="pt-val">200</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Variants</h3>
+      <table class="props-table">
+        <thead><tr><th>Class</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.phase-card</code></td><td>Base phase card</td></tr>
+          <tr><td><code>.current</code></td><td>Active phase — gold left border and badge</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="glass-panel phase-card current"&gt;
+  &lt;div class="phase-badge"&gt;2&lt;/div&gt;
+  &lt;div class="phase-info"&gt;
+    &lt;div class="phase-name"&gt;Seedling&lt;/div&gt;
+    &lt;div class="phase-days"&gt;Days 6–14&lt;/div&gt;
+    &lt;div class="phase-targets"&gt;
+      &lt;span class="phase-target"&gt;Temp &lt;span class="pt-val"&gt;24°C&lt;/span&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 15. ActivityEvent -->
+    <section id="activity-event" class="component-section">
+      <h2>ActivityEvent</h2>
+      <p>Timeline entry showing a system event with colored dot, action text, timestamp, and device ID. Used in the Activity/Audit log screen.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:480px">
+          <div class="activity-event">
+            <div class="event-dot" style="background:var(--green)"></div>
+            <div class="event-body">
+              <div class="event-action"><strong>Climate setpoint changed</strong> — Temperature 24°C → 25°C</div>
+              <div class="event-meta">14:32 · <span class="event-device">looper-dagze-1</span></div>
+            </div>
+          </div>
+          <div class="activity-event">
+            <div class="event-dot" style="background:var(--blue)"></div>
+            <div class="event-body">
+              <div class="event-action"><strong>Irrigation started</strong> — Zone A, 120s duration</div>
+              <div class="event-meta">14:28 · <span class="event-device">ripple-dagze-1</span></div>
+            </div>
+          </div>
+          <div class="activity-event">
+            <div class="event-dot" style="background:var(--orange)"></div>
+            <div class="event-body">
+              <div class="event-action"><strong>Sensor warning</strong> — RH exceeds 85% threshold</div>
+              <div class="event-meta">14:15 · <span class="event-device">looper-dagze-1</span></div>
+            </div>
+          </div>
+          <div class="activity-event">
+            <div class="event-dot" style="background:var(--purple)"></div>
+            <div class="event-body">
+              <div class="event-action"><strong>AI recommendation</strong> — Consider reducing temp 1-2°C to lower VPD</div>
+              <div class="event-meta">14:10 · <span class="event-device">looper-dagze-1</span></div>
+            </div>
+          </div>
+          <div class="activity-event">
+            <div class="event-dot" style="background:var(--red)"></div>
+            <div class="event-body">
+              <div class="event-action"><strong>Device reconnected</strong> — Was offline for 3m 22s</div>
+              <div class="event-meta">13:55 · <span class="event-device">ripple-dagze-1</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="activity-event"&gt;
+  &lt;div class="event-dot" style="background:var(--green)"&gt;&lt;/div&gt;
+  &lt;div class="event-body"&gt;
+    &lt;div class="event-action"&gt;
+      &lt;strong&gt;Climate setpoint changed&lt;/strong&gt; — Temp 24°C → 25°C
+    &lt;/div&gt;
+    &lt;div class="event-meta"&gt;
+      14:32 · &lt;span class="event-device"&gt;looper-dagze-1&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 16. AIInsightCard -->
+    <section id="ai-insight" class="component-section">
+      <h2>AIInsightCard</h2>
+      <p>Glass panel with purple left border and AI badge. Displays machine-learning recommendations. Measured, technical tone — never casual. Used in monitor and activity screens.</p>
+
+      <div class="demo-panel">
+        <div class="glass-panel ai-insight" style="max-width:480px">
+          <div class="ai-insight-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14v2a4 4 0 0 1-8 0v-2"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+            <span class="ai-insight-badge">AI Insight</span>
+          </div>
+          <div class="ai-insight-text">
+            VPD trending high at 1.42 kPa. Current RH 62% is below optimal range for lettuce at this growth stage. Consider increasing humidity target to 70–75% or reducing temperature by 1–2°C to bring VPD into the 0.8–1.2 kPa range.
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="glass-panel ai-insight"&gt;
+  &lt;div class="ai-insight-header"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+    &lt;span class="ai-insight-badge"&gt;AI Insight&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="ai-insight-text"&gt;
+    VPD trending high at 1.42 kPa...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 17. FertigationPair -->
+    <section id="fertigation-pair" class="component-section">
+      <h2>FertigationPair</h2>
+      <p>Side-by-side display of pH and EC readings with current value, arrow, and target. Used in the fertigation/nutrient management section.</p>
+
+      <div class="demo-panel">
+        <div class="glass-panel" style="padding:var(--sp-4);max-width:360px">
+          <div class="fert-pair-row">
+            <div class="fert-pair">
+              <div class="fert-pair-label">pH</div>
+              <div class="fert-pair-values">
+                <span class="fert-current">6.2</span>
+                <span class="fert-arrow">→</span>
+                <span class="fert-target">6.0</span>
+              </div>
+              <div class="fert-pair-unit">slightly above target</div>
+            </div>
+            <div class="fert-pair">
+              <div class="fert-pair-label">EC</div>
+              <div class="fert-pair-values">
+                <span class="fert-current">1.8</span>
+                <span class="fert-arrow">→</span>
+                <span class="fert-target">2.0</span>
+              </div>
+              <div class="fert-pair-unit">mS/cm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="fert-pair-row"&gt;
+  &lt;div class="fert-pair"&gt;
+    &lt;div class="fert-pair-label"&gt;pH&lt;/div&gt;
+    &lt;div class="fert-pair-values"&gt;
+      &lt;span class="fert-current"&gt;6.2&lt;/span&gt;
+      &lt;span class="fert-arrow"&gt;→&lt;/span&gt;
+      &lt;span class="fert-target"&gt;6.0&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 18. DayCounter -->
+    <section id="day-counter" class="component-section">
+      <h2>DayCounter</h2>
+      <p>Centered display showing current growth day with progress bar. Used at the top of the program/instruction screen to indicate batch progress.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:320px;margin:0 auto">
+          <div class="day-counter">
+            <div class="day-counter-label">Day 14</div>
+            <div class="day-counter-sub">Seedling phase · 65% complete</div>
+            <div class="day-progress">
+              <div class="day-progress-fill" data-width="65%" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+        <button class="demo-replay">Replay animation</button>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="day-counter"&gt;
+  &lt;div class="day-counter-label"&gt;Day 14&lt;/div&gt;
+  &lt;div class="day-counter-sub"&gt;Seedling phase · 65% complete&lt;/div&gt;
+  &lt;div class="day-progress"&gt;
+    &lt;div class="day-progress-fill" style="width:65%"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 19. RecordCard -->
+    <section id="record-card" class="component-section">
+      <h2>RecordCard</h2>
+      <p>Glass panel for harvest batch records. Shows lot number (gold monospace), date, crop, growing area, and key harvest statistics. Used in the Records/Batch screen for GAP compliance.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:400px">
+          <div class="glass-panel record-card">
+            <div class="record-header">
+              <span class="record-lot">BR-20260215-001</span>
+              <span class="record-date">2026-02-15</span>
+            </div>
+            <div class="record-crop">Lettuce — Butterhead</div>
+            <div class="record-area">Chamber 1, Zone A</div>
+            <div class="record-stats">
+              <div class="record-stat"><div class="rs-label">Yield</div><div class="rs-value">4.2 kg</div></div>
+              <div class="record-stat"><div class="rs-label">Days</div><div class="rs-value">35</div></div>
+              <div class="record-stat"><div class="rs-label">Quality</div><div class="rs-value">A</div></div>
+            </div>
+          </div>
+          <div class="glass-panel record-card">
+            <div class="record-header">
+              <span class="record-lot">BR-20260210-003</span>
+              <span class="record-date">2026-02-10</span>
+            </div>
+            <div class="record-crop">Basil — Sweet</div>
+            <div class="record-area">Chamber 2, Zone B</div>
+            <div class="record-stats">
+              <div class="record-stat"><div class="rs-label">Yield</div><div class="rs-value">1.8 kg</div></div>
+              <div class="record-stat"><div class="rs-label">Days</div><div class="rs-value">28</div></div>
+              <div class="record-stat"><div class="rs-label">Quality</div><div class="rs-value">A+</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;div class="glass-panel record-card"&gt;
+  &lt;div class="record-header"&gt;
+    &lt;span class="record-lot"&gt;BR-20260215-001&lt;/span&gt;
+    &lt;span class="record-date"&gt;2026-02-15&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="record-crop"&gt;Lettuce — Butterhead&lt;/div&gt;
+  &lt;div class="record-area"&gt;Chamber 1, Zone A&lt;/div&gt;
+  &lt;div class="record-stats"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 20. LoginButton -->
+    <section id="login-button" class="component-section">
+      <h2>LoginButton</h2>
+      <p>Gold gradient primary action button with rifle-bolt press animation. Used in the login ceremony alongside the full 5-step entrance sequence: logo reveal, gold ripple, dial spin-up, form slide, button active.</p>
+
+      <div class="demo-panel">
+        <div style="max-width:320px;margin:0 auto">
+          <div class="login-container">
+            <div class="login-logo">
+              墨泉
+              <div class="login-logo-sub">L U M I N A O S</div>
+              <div class="login-ripple"></div>
+            </div>
+            <div class="login-dials">
+              <svg class="login-mini-dial" viewBox="0 0 40 40">
+                <circle class="track" cx="20" cy="20" r="14"/>
+                <circle class="value" cx="20" cy="20" r="14"/>
+              </svg>
+              <svg class="login-mini-dial" viewBox="0 0 40 40">
+                <circle class="track" cx="20" cy="20" r="14"/>
+                <circle class="value" cx="20" cy="20" r="14"/>
+              </svg>
+              <svg class="login-mini-dial" viewBox="0 0 40 40">
+                <circle class="track" cx="20" cy="20" r="14"/>
+                <circle class="value" cx="20" cy="20" r="14"/>
+              </svg>
+            </div>
+            <div class="login-form">
+              <input class="login-input" type="text" placeholder="Username" value="admin@moquan.ag" readonly>
+              <input class="login-input" type="password" placeholder="Password" value="password" readonly>
+              <button class="login-btn">Sign In</button>
+            </div>
+          </div>
+          <button class="demo-replay login-demo-trigger" style="margin-top:var(--sp-5)">Play ceremony</button>
+        </div>
+      </div>
+
+      <h3>Ceremony Steps</h3>
+      <table class="props-table">
+        <thead><tr><th>Step</th><th>Timing</th><th>Element</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>200ms</td><td>Logo fades in + scales up</td></tr>
+          <tr><td>2</td><td>600ms</td><td>Gold ripple expands from logo center</td></tr>
+          <tr><td>3</td><td>1000ms</td><td>Mini dials appear (translateY)</td></tr>
+          <tr><td>4</td><td>1400ms</td><td>Dial arcs fill (stroke-dashoffset)</td></tr>
+          <tr><td>5</td><td>1800ms</td><td>Login form slides up</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Usage</h3>
+      <div class="code-block">
+        <button class="code-copy">Copy</button>
+        <pre><code class="language-html">&lt;button class="login-btn"&gt;Sign In&lt;/button&gt;
+
+&lt;!-- Rifle-bolt press via JS: --&gt;
+&lt;script&gt;
+btn.classList.add('rifle-bolt-click');
+&lt;/script&gt;</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/code.js"></script>
+<script src="js/demos.js"></script>
+</body>
+</html>
