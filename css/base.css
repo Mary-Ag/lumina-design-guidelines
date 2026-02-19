@@ -153,3 +153,19 @@ pre code {
 .mono {
   font-family: var(--font-mono);
 }
+
+/* ─── Light Theme Overrides ─── */
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #18181B;
+}
+
+[data-theme="light"] .glass-panel {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
