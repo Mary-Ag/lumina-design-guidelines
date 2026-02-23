@@ -45,7 +45,7 @@ Tokens are available in two formats for integration into your own projects:
 
 ## Themes
 
-Luce ships with two themes. **Dark** (default) uses the Void/Glass/Aluminum materials with a gold accent — designed for monitoring environments. **Light** uses solid white surfaces with a teal accent — designed for office and documentation contexts.
+Luce ships with two themes. **Dark** (default) uses the Void/Glass/Aluminum materials with a gold accent — designed for monitoring environments. **Light** uses solid white surfaces with a gold accent — designed for office and documentation contexts.
 
 Toggle between them with the sun/moon button in the sidebar. Preference persists via `localStorage`.
 

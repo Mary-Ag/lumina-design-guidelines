@@ -657,7 +657,7 @@
 }
 
 [data-theme="light"] .sidebar-sub-link.active {
-  color: #0D9488;
+  color: var(--gold);
 }
 
 [data-theme="light"] .sidebar-section-title {
@@ -673,7 +673,7 @@
 }
 
 [data-theme="light"] .sidebar-link.active {
-  color: #0D9488;
+  color: var(--gold);
 }
 
 [data-theme="light"] .page-header {
@@ -710,7 +710,7 @@
 }
 
 [data-theme="light"] .sidebar-group.current > .sidebar-group-title {
-  color: #0D9488;
+  color: var(--gold);
 }
 
 [data-theme="light"] .sidebar-subgroup-title {

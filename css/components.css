@@ -1178,12 +1178,12 @@ input[type="range"].alu-slider:focus-visible {
 }
 
 [data-theme="light"] .login-btn {
-  background: linear-gradient(145deg, #0D9488 0%, #0F766E 50%, #115E59 100%);
-  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.2);
+  background: linear-gradient(145deg, #E0AD20 0%, #D4A017 50%, #B8860B 100%);
+  box-shadow: 0 2px 8px rgba(212, 160, 23, 0.2);
 }
 
 [data-theme="light"] .login-btn:hover {
-  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
+  box-shadow: 0 4px 16px rgba(212, 160, 23, 0.3);
 }
 
 .login-input {

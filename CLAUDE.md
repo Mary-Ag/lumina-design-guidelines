@@ -9,7 +9,7 @@ Luce (Italian for "light") is the design language for LuminaOS, a precision agri
 Every surface must be exactly one of these:
 
 1. **Void** — pure dark background (`#0C0E12`, `#12151B`, `#181B23`). The absence of light.
-2. **Glass** — translucent panels with `backdrop-filter: blur(20px)`, 4% white bg, 8% white border, top-edge highlight gradient. Used for cards and containers.
+2. **Glass** — translucent panels with directional gradient background (168deg, brighter top-left), `backdrop-filter: blur(20px) saturate(1.8)`, 0.5px white border, specular top-edge highlight (inset box-shadow), dim bottom-edge (material thickness), multi-layer depth shadows. Four variants: standard (`liquid-glass`), prominent (`liquid-glass-prominent` — modals/hero), nav (`liquid-glass-nav` — controls), dark (`liquid-glass-dark` — on dark backgrounds). Used for cards and containers.
 3. **Aluminum** — interactive controls only. Gradient surfaces (`#3F3F46` → `#27272A`), machined thumb aesthetic. Reserved for things the user physically manipulates (sliders, toggles, manettino).
 
 ## Color Rules
@@ -80,7 +80,7 @@ Three durations: `--dur-fast` (200ms), `--dur-med` (350ms), `--dur-slow` (500ms)
 
 ## Themes
 
-Luce has two themes. **Dark** (default) uses the Void/Glass/Aluminum materials with gold accent — for monitoring environments. **Light** uses solid white surfaces with teal (`#0D9488`) accent — for office/documentation contexts.
+Luce has two themes. **Dark** (default) uses the Void/Glass/Aluminum materials with gold accent (`#F5A623`) — for monitoring environments. **Light** uses solid white surfaces with gold (`#D4A017`) accent — for office/documentation contexts.
 
 Theme switching: set `data-theme="light"` on `<html>`. All token overrides live in `css/tokens.css` under `[data-theme="light"]`. The same CSS custom property names are reused, so all component CSS works unchanged.
 
@@ -89,7 +89,7 @@ Key light theme differences:
 - `--glass-bg` → `rgba(0,0,0,0.03)` (dark overlay instead of white)
 - `--glass-border` → `#E4E4E7` (solid border, no glass blur)
 - `--alu-light` → `#18181B`, `--alu-mid` → `#52525B` (text inverts to dark)
-- `--gold` → `#0D9488` (teal replaces gold as primary accent)
+- `--gold` → `#D4A017` (gold for light backgrounds)
 - Semantic colors shift slightly: `--green` `#22C55E`, `--red` `#EF4444`, etc.
 
 Persist user preference: `localStorage.setItem('luce-theme', 'light'|'dark')`.
