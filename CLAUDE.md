@@ -52,6 +52,20 @@ Three durations: `--dur-fast` (200ms), `--dur-med` (350ms), `--dur-slow` (500ms)
 
 `--radius-sm` (8px), `--radius-md` (12px), `--radius-lg` (16px), `--radius-xl` (20px), `--radius-full` (9999px).
 
+## Form Controls
+
+Two height variants for single-line controls (text inputs, selects, date/time pickers):
+
+| Variant | Height | Tailwind | Use case |
+|-|-|-|-|
+| Standard | 40px | `h-10` | Forms, modals, settings, data entry |
+| Compact | 32px | `h-8` | Page header filters, toolbar controls, language switchers |
+
+- Always use explicit height (`h-10`/`h-8`), never padding-only — padding-based sizing produces inconsistent heights across element types and browsers
+- Buttons in forms: match adjacent controls (`h-10` in forms, `h-8` in toolbars)
+- Textareas: no fixed height; use `rows` attribute + `px-3 py-2` padding
+- Canonical CSS class: `.input` (standard) and `.input-compact` (compact) in `index.css`
+
 ## Components (20 total)
 
 **Aluminum** (interactive controls):
